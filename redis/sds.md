@@ -40,10 +40,11 @@ struct __attribute__ ((__packed__)) sdshdr64 {
 ```
   针对不同的大小的字符使用了不同的结构体来存储 ，从而节省内存
   
-### SDS 中的一些代码细节
+### SDS的重点特性
 - 使用 len 属性保存sds长度，使得获取 sds 对象长度的计算变为O(1)
 - 使用 sdsMakeRoomFor 、sdsRemoveFreeSpace 函数在对 sds 做拼接或者剪切操作时 动态调整占用内存
-- 
+- 二进制安全（不仅可以保存字符串，还可以保存任意的二进制数据）
+- 兼容部分C字符串函数(默认会在末尾添加'\0'字符，做到与c的一些函数库兼容)
   
 ```C
   /* Append the specified binary-safe string pointed by 't' of 'len' bytes to the
