@@ -18,14 +18,12 @@ public class Shell {
         int h = 1;
         if (h <N/3)
             h = 3*h+1;
-        while (h>=1){
-            //将部分数组直至最终数组变成有序
+        while (h>1){
             for (int i = h; i < N; i++) {
-                for (int j = i; j >=h&&less(a[j],a[j-h]) ; j-=h) {
+                for (int j = i; j >=h&& less(a[j],a[j-h]) ; j-=h) {
                     exch(a,j,j-h);
                 }
             }
-
             h = h/3;
         }
 
