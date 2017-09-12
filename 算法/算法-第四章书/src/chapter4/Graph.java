@@ -33,6 +33,11 @@ public class Graph {
         adjacency.get(verEnd).add(verStart);
     }
 
+    /**
+     * 获取某个顶点的临接点
+     * @param vertical
+     * @return
+     */
     public List<Integer> getAdjacency(int vertical){
         return adjacency.get(vertical);
     }
