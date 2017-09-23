@@ -44,3 +44,20 @@ public static int bitCount(int i) {
 具体的代码分析可以参考:
 
 参考 博文 （http://blog.csdn.net/cor_twi/article/details/53720640）
+#### 
+
+上面的实现方式有些复杂，这里再提出一个遍历获取的方式。
+假设原数为num, num & (num - 1)可以快速地移除最右边的bit 1（如果不能理解，你可以在草稿本上尝试一下过程）， 一直循环到num为0, 总的循环数就是num中bit 1的个数。
+
+
+```java
+public static int bitCount (int i){
+    int count = 0;
+    while(i){
+        ++count;
+        i &= (i-1);
+    }
+    return count;
+}
+
+```
