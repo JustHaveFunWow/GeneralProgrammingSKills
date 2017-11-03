@@ -21,14 +21,19 @@ public class Knapsack1 {
         int n = weight.length;
         int[] w = new int[n+1];
         int[] v = new int[n+1];
+        //G[i][j] 为二维组，表示容量为j时，第i个物品的选择
         int[][] G = new int[n+1][c+1];
         for (int i = 1; i < n+1; i++) {
             w[i] = weight[i-1];
             v[i] = value[i-1];
         }
         int[] values = new int[c+1];
+        //整个G[i][t] 表的生成是自尚向下，自右向左的
+        //第一个循环表示 只有[1,i]物品可选的时候 背包的选择
+        //
         for (int i = 1; i < n+1; i++) {
-            for (int t = c; t >= w[i] ; t--) {
+            //容量从 最大递减
+            for (int t = c; t >= w[i] ; t--) {//算出容量从c到w[i]时 对index i 物品的选择，则t容量至少为 weight[i] ,否则选择为0 表示没有可选
                 if (values[t] < values[t-w[i]]+v[i]){
                     values[t] = values[t-w[i]]+v[i];
                     G[i][t] =1;
@@ -39,8 +44,9 @@ public class Knapsack1 {
         System.out.println("最大价值为: "+values[c]);
         System.out.println("装入背包的物品编号为: ");
 
-        int i = n;
-        int j = c;
+        int i = n;//商品数量[0-n]
+        int j = c;//[容量 0-C]
+        //从表的生成规律可以看出，最佳的选择位于右下角. 寻找答案的规律是，先保证容量不变，
         while (i>0){
             if (G[i][j] ==1){
                 System.out.print(i+" ");
