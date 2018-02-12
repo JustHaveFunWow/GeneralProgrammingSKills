@@ -31,11 +31,11 @@ def addSignNameWaterMark(file,outfile,override = False):
     :return:
     """
     im = Image.open(file).convert("RGBA")
-    txt = Image.new("RGBA",im.size,(0,0,0,0))
-
-    fnt = ImageFont.truetype(fontPath,size=int(im.size[0]/10))
+    txt = Image.new("RGBA",im.size,(0,255,0,0))
+    fontSize = int(im.size[0]/40)
+    fnt = ImageFont.truetype(fontPath,size=fontSize)
     d=ImageDraw.Draw(txt)
-    d.text((txt.size[0]-300,txt.size[1]-100), "wx:easygomaixie",font=fnt, fill=(255,255,255,255))
+    d.text((0,fontSize), "wx:easygomaixie",font=fnt, fill=(255,255,255,255))
     out=Image.alpha_composite(im, txt)
     safeCreateFile(outfile)
     out.save(outfile,"PNG")

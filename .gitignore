@@ -24,3 +24,16 @@ release/
 freeline*
 freeline/
 .gradle-build/
+
+#Python
+.coverage
+coverage.xml
+nosetests.xml
+dist/
+logs/
+.ropeproject
+.Python
+bin/
+include/
+lib/
+*.pyc
