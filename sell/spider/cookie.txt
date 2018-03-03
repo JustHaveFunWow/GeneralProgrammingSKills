@@ -1,0 +1,6 @@
+# Netscape HTTP Cookie File
+# http://curl.haxx.se/rfc/cookie_spec.html
+# This is a generated file!  Do not edit.
+
+api.diyidan.net	FALSE	/	FALSE		session_id	"2|1:0|10:1519981847|10:session_id|24:MTRmOTYwMjE2MmViNGVlZA==|26641b9a34993b09fa52b70cb952a1dea3060a8391786d056a68222c41fdfe76"
+api.diyidan.net	FALSE	/	FALSE	1551517847	token_id	"2|1:0|10:1519981847|8:token_id|44:eXRyMXB1bG52N2RhODBmczJxaG96Y2k0azM2d2U1Z2o=|1c9ecd714b6649176046db90159bc73fc541dfa7665b066f557bc312aa56d630"
