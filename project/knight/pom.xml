@@ -9,8 +9,9 @@
 	<packaging>jar</packaging>
 
 	<name>knight</name>
-	<description>Start Proejct for Spring Boot</description>
+	<description>Start Project for Spring Boot</description>
 
+	<!--核心模块，包括自动配置支持，日志 和YAML-->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -25,6 +26,12 @@
 	</properties>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-amqp</artifactId>
