@@ -1,4 +1,4 @@
-package nimdanoob.knight;
+package nimdanoob.knight.web;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
