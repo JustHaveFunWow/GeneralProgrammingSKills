@@ -2,6 +2,8 @@ package nimdanoob.knight;
 
 import nimdanoob.knight.web.KnightApplication;
 import nimdanoob.knight.web.controller.UserController;
+import nimdanoob.knight.web.domain.mapper.CityMapper;
+import nimdanoob.knight.web.domain.model.CityExample;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -65,9 +67,19 @@ public class KnightApplicationTests {
     }
 
 
+    @Autowired
+    private CityMapper cityMapper;
+    @Test
+    public void testMybatis(){
+        long count = cityMapper.countByExample(new CityExample());
+
+    }
+
+
 
     @Test
     public void contextLoads() {
     }
+
 
 }
