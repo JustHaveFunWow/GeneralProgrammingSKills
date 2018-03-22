@@ -1,4 +1,4 @@
-package nimdanoob.knight.web.common;
+package com.knight.common.redis;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.serializer.support.DeserializingConverter;

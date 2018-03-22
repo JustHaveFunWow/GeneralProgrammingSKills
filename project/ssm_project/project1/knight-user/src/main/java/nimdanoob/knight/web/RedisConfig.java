@@ -1,7 +1,6 @@
 package nimdanoob.knight.web;
 
-import nimdanoob.knight.web.common.RedisObjectSerializer;
-import nimdanoob.knight.web.domain.User;
+import com.knight.common.redis.RedisObjectSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;

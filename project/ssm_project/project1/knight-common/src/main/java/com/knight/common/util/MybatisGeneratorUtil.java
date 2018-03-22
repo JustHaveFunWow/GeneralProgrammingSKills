@@ -126,15 +126,17 @@ public class MybatisGeneratorUtil {
 		System.out.println("========== 开始生成Service ==========");
 		String ctime = new SimpleDateFormat("yyyy/M/d").format(new Date());
 		String servicePath = basePath +"/src/main/java/" + package_name.replaceAll("\\.", "/") + "/service/api";
+		String serviceMockPath = basePath +"/src/main/java/" + package_name.replaceAll("\\.", "/") + "/service/mock";
 		String serviceImplPath = basePath + "/src/main/java/" + package_name.replaceAll("\\.", "/") + "/service/impl";
 
 		createPath(servicePath);
+		createPath(serviceMockPath);
 		createPath(serviceImplPath);
 
 		for (int i = 0; i < tables.size(); i++) {
-			String model = lineToHump(ObjectUtils.toString(tables.get(i).get("table_name")).replaceFirst(table_prefix,""));
+			String model = lineToHump(ObjectUtils.toString(tables.get(i).get("table_name")).replace(table_prefix,""));
 			String service = servicePath + "/" + model + "Service.java";
-			String serviceMock = servicePath + "/" + model + "ServiceMock.java";
+			String serviceMock = serviceMockPath + "/" + model + "ServiceMock.java";
 			String serviceImpl = serviceImplPath + "/" + model + "ServiceImpl.java";
 			// 生成service
 			File serviceFile = new File(service);
