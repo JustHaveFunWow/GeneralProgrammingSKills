@@ -49,29 +49,32 @@
         <jdbcConnection driverClass="${generator.jdbc.driver}"
                         connectionURL="${generator.jdbc.url}"
                         userId="${generator.jdbc.username}"
-                        password="${generator_jdbc_password}" />
+                        password="root" />
 
         <!-- model生成 -->
-        <javaModelGenerator targetPackage="${generator_javaModelGenerator_targetPackage}" targetProject="${targetProject}/src/main/java" />
+        <javaModelGenerator targetPackage="nimdanoob.knight.web.domain.model" targetProject="/Users/hb/code/mygithub/GeneralProgrammingSKills/project/ssm_project/project1/knight-user//src/main/java" />
 
         <!-- MapperXML生成 -->
-        <sqlMapGenerator targetPackage="mapper" targetProject="${targetProject_sqlMap}/src/main/resources" />
+        <sqlMapGenerator targetPackage="mapper" targetProject="/Users/hb/code/mygithub/GeneralProgrammingSKills/project/ssm_project/project1/knight-user/src/main/resources" />
 
         <!-- Mapper接口生成 -->
-        <javaClientGenerator targetPackage="${generator_javaClientGenerator_targetPackage}" targetProject="${targetProject}/src/main/java" type="XMLMAPPER" />
+        <javaClientGenerator targetPackage="nimdanoob.knight.web.domain.mapper" targetProject="/Users/hb/code/mygithub/GeneralProgrammingSKills/project/ssm_project/project1/knight-user//src/main/java" type="XMLMAPPER" />
 
         <!-- 需要映射的表 -->
-        #foreach($table in $tables)
-            #if($last_insert_id_tables.containsKey($!table.table_name) == true)
-                <table tableName="$!table.table_name" domainObjectName="$!table.model_name">
-                    <generatedKey column="$!last_insert_id_tables.get($!table.table_name)" sqlStatement="MySql" identity="true"/>
-                    <domainObjectRenamingRule searchString="^${table_prefix}" replaceString="" />
+                                    <table tableName="ucenter_oauth" domainObjectName="Oauth">
+                    <domainObjectRenamingRule searchString="^UCENTER_" replaceString="" />
                 </table>
-            #else
-                <table tableName="$!table.table_name" domainObjectName="$!table.model_name">
-                    <domainObjectRenamingRule searchString="^${table_prefix}" replaceString="" />
+                                                <table tableName="ucenter_user" domainObjectName="User">
+                    <domainObjectRenamingRule searchString="^UCENTER_" replaceString="" />
                 </table>
-            #end
-        #end
-    </context>
+                                                <table tableName="ucenter_user_details" domainObjectName="UserDetails">
+                    <domainObjectRenamingRule searchString="^UCENTER_" replaceString="" />
+                </table>
+                                                <table tableName="ucenter_user_log" domainObjectName="UserLog">
+                    <domainObjectRenamingRule searchString="^UCENTER_" replaceString="" />
+                </table>
+                                                <table tableName="ucenter_user_oauth" domainObjectName="UserOauth">
+                    <domainObjectRenamingRule searchString="^UCENTER_" replaceString="" />
+                </table>
+                        </context>
 </generatorConfiguration>
