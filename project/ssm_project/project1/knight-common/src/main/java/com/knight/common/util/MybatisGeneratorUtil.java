@@ -123,51 +123,52 @@ public class MybatisGeneratorUtil {
 		}
 		System.out.println("========== 结束运行MybatisGenerator ==========");
 
-//		System.out.println("========== 开始生成Service ==========");
-//		String ctime = new SimpleDateFormat("yyyy/M/d").format(new Date());
-//		String servicePath = basePath + module + "/" + module + "-rpc-api" + "/src/main/java/" + package_name.replaceAll("\\.", "/") + "/rpc/api";
-//		String serviceImplPath = basePath + module + "/" + module + "-rpc-service" + "/src/main/java/" + package_name.replaceAll("\\.", "/") + "/rpc/service/impl";
-//		createPath(servicePath);
-//		createPath(serviceImplPath);
-//
-//		for (int i = 0; i < tables.size(); i++) {
-//			String model = lineToHump(ObjectUtils.toString(tables.get(i).get("table_name")));
-//			String service = servicePath + "/" + model + "Service.java";
-//			String serviceMock = servicePath + "/" + model + "ServiceMock.java";
-//			String serviceImpl = serviceImplPath + "/" + model + "ServiceImpl.java";
-//			// 生成service
-//			File serviceFile = new File(service);
-//			if (!serviceFile.exists()) {
-//				VelocityContext context = new VelocityContext();
-//				context.put("package_name", package_name);
-//				context.put("model", model);
-//				context.put("ctime", ctime);
-//				VelocityUtil.generate(service_vm, service, context);
-//				System.out.println(service);
-//			}
-//			// 生成serviceMock
-//			File serviceMockFile = new File(serviceMock);
-//			if (!serviceMockFile.exists()) {
-//				VelocityContext context = new VelocityContext();
-//				context.put("package_name", package_name);
-//				context.put("model", model);
-//				context.put("ctime", ctime);
-//				VelocityUtil.generate(serviceMock_vm, serviceMock, context);
-//				System.out.println(serviceMock);
-//			}
-//			// 生成serviceImpl
-//			File serviceImplFile = new File(serviceImpl);
-//			if (!serviceImplFile.exists()) {
-//				VelocityContext context = new VelocityContext();
-//				context.put("package_name", package_name);
-//				context.put("model", model);
-//				context.put("mapper", StringUtil.toLowerCaseFirstOne(model));
-//				context.put("ctime", ctime);
-//				VelocityUtil.generate(serviceImpl_vm, serviceImpl, context);
-//				System.out.println(serviceImpl);
-//			}
-//		}
-//		System.out.println("========== 结束生成Service ==========");
+		System.out.println("========== 开始生成Service ==========");
+		String ctime = new SimpleDateFormat("yyyy/M/d").format(new Date());
+		String servicePath = basePath +"/src/main/java/" + package_name.replaceAll("\\.", "/") + "/service/api";
+		String serviceImplPath = basePath + "/src/main/java/" + package_name.replaceAll("\\.", "/") + "/service/impl";
+
+		createPath(servicePath);
+		createPath(serviceImplPath);
+
+		for (int i = 0; i < tables.size(); i++) {
+			String model = lineToHump(ObjectUtils.toString(tables.get(i).get("table_name")).replaceFirst(table_prefix,""));
+			String service = servicePath + "/" + model + "Service.java";
+			String serviceMock = servicePath + "/" + model + "ServiceMock.java";
+			String serviceImpl = serviceImplPath + "/" + model + "ServiceImpl.java";
+			// 生成service
+			File serviceFile = new File(service);
+			if (!serviceFile.exists()) {
+				VelocityContext context = new VelocityContext();
+				context.put("package_name", package_name);
+				context.put("model", model);
+				context.put("ctime", ctime);
+				VelocityUtil.generate(service_vm, service, context);
+				System.out.println(service);
+			}
+			// 生成serviceMock
+			File serviceMockFile = new File(serviceMock);
+			if (!serviceMockFile.exists()) {
+				VelocityContext context = new VelocityContext();
+				context.put("package_name", package_name);
+				context.put("model", model);
+				context.put("ctime", ctime);
+				VelocityUtil.generate(serviceMock_vm, serviceMock, context);
+				System.out.println(serviceMock);
+			}
+			// 生成serviceImpl
+			File serviceImplFile = new File(serviceImpl);
+			if (!serviceImplFile.exists()) {
+				VelocityContext context = new VelocityContext();
+				context.put("package_name", package_name);
+				context.put("model", model);
+				context.put("mapper", StringUtil.toLowerCaseFirstOne(model));
+				context.put("ctime", ctime);
+				VelocityUtil.generate(serviceImpl_vm, serviceImpl, context);
+				System.out.println(serviceImpl);
+			}
+		}
+		System.out.println("========== 结束生成Service ==========");
 	}
 
 	// 递归删除非空文件夹

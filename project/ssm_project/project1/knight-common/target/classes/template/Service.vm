@@ -1,8 +1,8 @@
-package ${package_name}.rpc.api;
+package ${package_name}.service.api;
 
 import com.knight.common.base.BaseService;
-import ${package_name}.dao.model.${model};
-import ${package_name}.dao.model.${model}Example;
+import ${package_name}.domain.model.${model};
+import ${package_name}.domain.model.${model}Example;
 
 /**
 * ${model}Service接口
