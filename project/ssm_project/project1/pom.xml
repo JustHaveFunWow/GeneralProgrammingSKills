@@ -16,8 +16,8 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <modules>
-        <module>knight</module>
         <module>knight-common</module>
+        <module>knight-user</module>
     </modules>
 
     <properties>
