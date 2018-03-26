@@ -2,7 +2,7 @@ package nimdanoob.knight.web.controller;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
-import nimdanoob.knight.web.domain.User;
+import nimdanoob.knight.web.domain.model.User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -24,9 +24,10 @@ public class UserController {
 
     @ApiOperation(value = "创建用户",notes = "根据User对象创建用户")
     @ApiImplicitParam(name = "user",value = "用户详细实体",required = true,dataType = "User")
-    @RequestMapping(value = "/",method = RequestMethod.POST)
+    @RequestMapping(value = "/register",method = RequestMethod.POST)
     public String postUser(@ModelAttribute User user){
-        users.put(user.getId(),user);
+        
+        users.put(user.getUserId(),user);
         return "success";
     }
 
@@ -38,8 +39,7 @@ public class UserController {
     @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
     public String putUser(@PathVariable Long id,@ModelAttribute User user){
         User u = users.get(id);
-        u.setName(user.getName());
-        u.setAge(user.getAge());
+        u.setUserName(user.getUserName());
         users.put(id,u);
         return "success";
     }

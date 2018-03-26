@@ -6,7 +6,7 @@ import nimdanoob.knight.web.domain.model.OauthExample;
 
 /**
 * OauthService接口
-* Created by shuknight on 2018/3/22.
+* Created by shuknight on 2018/3/26.
 */
 public interface OauthService extends BaseService<Oauth, OauthExample> {
 

@@ -7,7 +7,7 @@ import nimdanoob.knight.web.domain.model.UserLogExample;
 
 /**
 * 降级实现UserLogService接口
-* Created by shuknight on 2018/3/22.
+* Created by shuknight on 2018/3/26.
 */
 public class UserLogServiceMock extends BaseServiceMock<UserLogMapper, UserLog, UserLogExample> implements UserLogService {
 

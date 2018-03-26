@@ -7,7 +7,7 @@ import nimdanoob.knight.web.domain.model.UserExample;
 
 /**
 * 降级实现UserService接口
-* Created by shuknight on 2018/3/22.
+* Created by shuknight on 2018/3/26.
 */
 public class UserServiceMock extends BaseServiceMock<UserMapper, User, UserExample> implements UserService {
 

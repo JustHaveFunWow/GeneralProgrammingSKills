@@ -7,7 +7,7 @@ import nimdanoob.knight.web.domain.model.UserOauthExample;
 
 /**
 * 降级实现UserOauthService接口
-* Created by shuknight on 2018/3/22.
+* Created by shuknight on 2018/3/26.
 */
 public class UserOauthServiceMock extends BaseServiceMock<UserOauthMapper, UserOauth, UserOauthExample> implements UserOauthService {
 

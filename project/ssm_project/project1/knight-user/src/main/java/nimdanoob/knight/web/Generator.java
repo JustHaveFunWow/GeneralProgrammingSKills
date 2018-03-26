@@ -4,6 +4,7 @@ import com.knight.common.util.MybatisGeneratorUtil;
 import com.knight.common.util.PropertiesFileUtil;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 /**
@@ -21,8 +22,14 @@ public class Generator {
     private static String JDBC_PASSWORD = PropertiesFileUtil.getInstance("generator").get("generator.jdbc.password");
     // 需要insert后返回主键的表配置，key:表名,value:主键名
     private static Map<String, String> LAST_INSERT_ID_TABLES = new HashMap<>();
-    static {
+    //用于 只更新部分表情况
+    private static HashSet<String> onlyTables = new HashSet<>();
 
+    private static final int GENERATOR_MODE_ALL= 1;//更新所有的表
+    private static final int GENERATOR_MODE_APPOINT= 2;// 只更新指定的表
+    private static final int GENERATOR_MODE= GENERATOR_MODE_ALL;
+
+    static {
     }
 
     /**

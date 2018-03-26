@@ -7,7 +7,7 @@ import nimdanoob.knight.web.domain.model.UserDetailsExample;
 
 /**
 * 降级实现UserDetailsService接口
-* Created by shuknight on 2018/3/22.
+* Created by shuknight on 2018/3/26.
 */
 public class UserDetailsServiceMock extends BaseServiceMock<UserDetailsMapper, UserDetails, UserDetailsExample> implements UserDetailsService {
 

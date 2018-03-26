@@ -1,17 +1,14 @@
 package nimdanoob.knight.web.domain.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OauthExample implements Serializable {
+public class OauthExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
-
-    private static final long serialVersionUID = 1L;
 
     public OauthExample() {
         oredCriteria = new ArrayList<Criteria>();
@@ -66,7 +63,7 @@ public class OauthExample implements Serializable {
         distinct = false;
     }
 
-    protected abstract static class GeneratedCriteria implements Serializable {
+    protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
 
         protected GeneratedCriteria() {
@@ -238,14 +235,14 @@ public class OauthExample implements Serializable {
         }
     }
 
-    public static class Criteria extends GeneratedCriteria implements Serializable {
+    public static class Criteria extends GeneratedCriteria {
 
         protected Criteria() {
             super();
         }
     }
 
-    public static class Criterion implements Serializable {
+    public static class Criterion {
         private String condition;
 
         private Object value;

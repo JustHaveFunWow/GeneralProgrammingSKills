@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
 * UserLogService实现
-* Created by shuknight on 2018/3/22.
+* Created by shuknight on 2018/3/26.
 */
 @Service
 @Transactional

@@ -7,7 +7,7 @@ import nimdanoob.knight.web.domain.model.OauthExample;
 
 /**
 * 降级实现OauthService接口
-* Created by shuknight on 2018/3/22.
+* Created by shuknight on 2018/3/26.
 */
 public class OauthServiceMock extends BaseServiceMock<OauthMapper, Oauth, OauthExample> implements OauthService {
 
