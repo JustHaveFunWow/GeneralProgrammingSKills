@@ -3,7 +3,10 @@ package com.knight.common.util;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.Map;
 
 /**
@@ -12,12 +15,15 @@ import java.util.Map;
  * @author knight
  * @date 2016年10月15日
  */
+@Component
 public class SpringContextUtil implements ApplicationContextAware {
 
 	private static ApplicationContext context = null;
 
+
 	private SpringContextUtil() {
 		super();
+
 	}
 
 	@Override

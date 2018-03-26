@@ -14,7 +14,7 @@ public class UserController {
 
 //    @Autowired UserService userService;
 
-    static Map<Long,User> users = Collections.synchronizedMap(new HashMap<Long, User>());
+    static Map<Integer,User> users = Collections.synchronizedMap(new HashMap<Integer, User>());
     @ApiOperation(value = "获取用户列表",notes = "")
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public List<User> getUserList(){
@@ -26,18 +26,18 @@ public class UserController {
     @ApiImplicitParam(name = "user",value = "用户详细实体",required = true,dataType = "User")
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     public String postUser(@ModelAttribute User user){
-        
+
         users.put(user.getUserId(),user);
         return "success";
     }
 
     @RequestMapping(value = "{id}",method = RequestMethod.GET)
-    public User getUser(@PathVariable Long id){
+    public User getUser(@PathVariable Integer id){
         return users.get(id);
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
-    public String putUser(@PathVariable Long id,@ModelAttribute User user){
+    public String putUser(@PathVariable Integer id,@ModelAttribute User user){
         User u = users.get(id);
         u.setUserName(user.getUserName());
         users.put(id,u);
@@ -45,7 +45,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/id",method = RequestMethod.DELETE)
-    public String deleteUser(@PathVariable  Long id){
+    public String deleteUser(@PathVariable  Integer id){
         users.remove(id);
         return "success";
     }

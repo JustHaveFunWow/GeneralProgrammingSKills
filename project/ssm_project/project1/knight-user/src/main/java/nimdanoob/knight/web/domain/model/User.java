@@ -10,7 +10,7 @@ public class User {
      *
      * @mbg.generated
      */
-    private Long userId;
+    private Integer userId;
 
     /**
      * 用户账号
