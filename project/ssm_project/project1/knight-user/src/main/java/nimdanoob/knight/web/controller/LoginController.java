@@ -52,8 +52,10 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public String login(@ModelAttribute User user){
-
+    public BaseServerResponse login(@ModelAttribute User user){
+        if (user.getUserName() == null || user.getPassword() == null)
+            return BaseServerResponse.createByErrorCodeMessage(0,"账号或密码不能为空");
+        //case
         return null;
     }
 
