@@ -1,6 +1,8 @@
 package nimdanoob.knight.web.domain.model;
 
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
@@ -24,6 +26,7 @@ public class User {
      *
      * @mbg.generated
      */
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     /**
@@ -31,6 +34,8 @@ public class User {
      *
      * @mbg.generated
      */
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+
     private String salt;
 
     /**
@@ -66,6 +71,7 @@ public class User {
      *
      * @mbg.generated
      */
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String createIp;
 
     /**
@@ -80,5 +86,6 @@ public class User {
      *
      * @mbg.generated
      */
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String lastLoginIp;
 }
