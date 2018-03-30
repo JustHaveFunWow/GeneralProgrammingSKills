@@ -9,5 +9,5 @@ import nimdanoob.knight.web.domain.model.UserExample;
 * Created by shuknight on 2018/3/26.
 */
 public interface UserService extends BaseService<User, UserExample> {
-
+    User authUserAndPwd(String userName, String pwd);
 }

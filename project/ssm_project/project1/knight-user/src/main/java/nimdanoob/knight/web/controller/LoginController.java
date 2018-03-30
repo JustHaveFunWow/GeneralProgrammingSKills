@@ -3,6 +3,7 @@ package nimdanoob.knight.web.controller;
 
 import com.knight.common.result.BaseServerResponse;
 import net.sf.ehcache.search.impl.BaseResult;
+import nimdanoob.knight.web.common.ErrorCode;
 import nimdanoob.knight.web.domain.model.User;
 import nimdanoob.knight.web.domain.model.UserExample;
 import nimdanoob.knight.web.service.api.UserService;
@@ -10,10 +11,7 @@ import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.jws.soap.SOAPBinding;
 
@@ -41,8 +39,8 @@ public class LoginController {
         }
         User createUser = new User();
         createUser.setUserName(user.getUserName());
-        String salt = new SecureRandomNumberGenerator().nextBytes().toHex();
 
+        String salt = new SecureRandomNumberGenerator().nextBytes().toHex();
         String hashedPwd = new SimpleHash(ALGORITHM_NAME, pwd, salt, HASH_ITERATIONS).toHex();
         createUser.setPassword(hashedPwd);
         createUser.setSalt(salt);
@@ -52,18 +50,24 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public BaseServerResponse login(@ModelAttribute User user){
-        if (user.getUserName() == null || user.getPassword() == null)
+    @ResponseBody
+    public BaseServerResponse login(@RequestParam String userName,@RequestParam String password){
+        if (userName == null || password == null)
             return BaseServerResponse.createByErrorCodeMessage(0,"账号或密码不能为空");
         //case
-        return null;
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andUserNameEqualTo(userName);
+        User user = userService.authUserAndPwd(userName, password);
+        if (user == null) {
+            return BaseServerResponse.createByErrorCodeMessage(ErrorCode.AUTH_ERROR,"账号或密码错误");
+        }
+        // todo  生成 token 并存储到redis
+        return BaseServerResponse.createBySuccess(user);
     }
 
 
     @RequestMapping(value = "/logout",method = RequestMethod.GET)
     public String logout(){
-
-
         return null;
     }
 

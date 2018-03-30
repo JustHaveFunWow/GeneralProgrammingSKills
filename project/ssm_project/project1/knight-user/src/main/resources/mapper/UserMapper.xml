@@ -189,12 +189,14 @@
       </if>
     </trim>
   </insert>
+
   <select id="countByExample" parameterType="nimdanoob.knight.web.domain.model.UserExample" resultType="java.lang.Long">
     select count(*) from ucenter_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+
   <update id="updateByExampleSelective" parameterType="map">
     update ucenter_user
     <set>
@@ -303,5 +305,17 @@
       last_login_ip = #{lastLoginIp,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
+
+
+  <!-- custom-->
+
+  <select id="selectByUserName" resultType="nimdanoob.knight.web.domain.model.User">
+    select
+    <include refid="Base_Column_List"/>
+    from ucenter_user
+    where user_name = #{userName,jdbcType=VARCHAR}
+  </select>
+
+
   <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
 </mapper>

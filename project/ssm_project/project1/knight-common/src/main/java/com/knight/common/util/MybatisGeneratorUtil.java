@@ -149,15 +149,16 @@ public class MybatisGeneratorUtil {
 				System.out.println(service);
 			}
 			// 生成serviceMock
-			File serviceMockFile = new File(serviceMock);
-			if (!serviceMockFile.exists()) {
-				VelocityContext context = new VelocityContext();
-				context.put("package_name", package_name);
-				context.put("model", model);
-				context.put("ctime", ctime);
-				VelocityUtil.generate(serviceMock_vm, serviceMock, context);
-				System.out.println(serviceMock);
-			}
+			//todo 控制是否生成ServiceMock
+//			File serviceMockFile = new File(serviceMock);
+//			if (!serviceMockFile.exists()) {
+//				VelocityContext context = new VelocityContext();
+//				context.put("package_name", package_name);
+//				context.put("model", model);
+//				context.put("ctime", ctime);
+//				VelocityUtil.generate(serviceMock_vm, serviceMock, context);
+//				System.out.println(serviceMock);
+//			}
 			// 生成serviceImpl
 			File serviceImplFile = new File(serviceImpl);
 			if (!serviceImplFile.exists()) {
