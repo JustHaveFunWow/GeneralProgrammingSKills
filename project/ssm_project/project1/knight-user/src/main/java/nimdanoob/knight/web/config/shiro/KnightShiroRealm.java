@@ -55,16 +55,11 @@ public class KnightShiroRealm extends AuthorizingRealm{
         // if locked return LockedAccountException
 
         //使用CredentialsMatcher 进行密码匹配
-        if (null != username && null!=password){
-            return new SimpleAuthenticationInfo(user,
-                    user.getPassword(),
-                    ByteSource.Util.bytes(user.getSalt()),
-                    getName());
-
-        }
-
-        return null;
-
-
+        if (username == null)
+            return null;
+        return new SimpleAuthenticationInfo(user,
+                user.getPassword(),
+                ByteSource.Util.bytes(user.getSalt()),
+                getName());
     }
 }

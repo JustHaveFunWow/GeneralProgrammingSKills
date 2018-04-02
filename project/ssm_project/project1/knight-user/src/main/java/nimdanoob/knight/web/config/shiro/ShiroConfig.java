@@ -6,16 +6,32 @@ import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSource
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.ShiroFilter;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 
+import javax.servlet.DispatcherType;
+import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 import java.util.Properties;
 
 @Configuration
 public class ShiroConfig {
 
+    @Bean
+    public FilterRegistrationBean filterRegistrationBean(){
+        FilterRegistrationBean<Filter> filterRegistration= new FilterRegistrationBean<>();
+        filterRegistration.setFilter(new DelegatingFilterProxy("shiroFilter"));
+        filterRegistration.setEnabled(true);
+        filterRegistration.addUrlPatterns("/*");
+        filterRegistration.setDispatcherTypes(DispatcherType.REQUEST);
+        return filterRegistration;
+    }
+
+
+    @Bean(name = "shiroFilter")
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager){
         System.out.println("ShiroConfiguration.shiroFilter");
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
@@ -48,9 +64,10 @@ public class ShiroConfig {
 
     @Bean
     public KnightShiroRealm myShiroRealm(){
-        KnightShiroRealm myShiroRealm = new KnightShiroRealm();
-        return myShiroRealm;
+        return new KnightShiroRealm();
     }
+
+
 
 
     @Bean
