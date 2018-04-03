@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
 * UserService实现
-* Created by shuknight on 2018/3/26.
+* Created by knight on 2018/3/26.
 */
 @Service
 @Transactional
@@ -44,5 +44,17 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User, UserExamp
         if (password.equals(AuthUtils.encryptPassword(pwd,salt)))
             return user;
         return null;
+    }
+
+    /**
+     *
+     * @param dbUser 数据库的 映射 user，严谨的 应该是 DTO
+     * @param pwd
+     * @return
+     */
+    @Override
+    public boolean authUserAndPwd(User dbUser,String pwd){
+
+        return dbUser.getPassword().equals(AuthUtils.encryptPassword(pwd,dbUser.getSalt()));
     }
 }

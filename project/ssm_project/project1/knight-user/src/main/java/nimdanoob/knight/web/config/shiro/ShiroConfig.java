@@ -2,10 +2,13 @@ package nimdanoob.knight.web.config.shiro;
 
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.session.mgt.SessionFactory;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.apache.shiro.web.servlet.ShiroFilter;
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,6 +34,56 @@ public class ShiroConfig {
     }
 
 
+
+
+    @Bean(name = "hashCredentialsMatcher")
+    public HashedCredentialsMatcher hashedCredentialsMatcher(){
+        HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
+        hashedCredentialsMatcher.setHashAlgorithmName("md5");
+        hashedCredentialsMatcher.setHashIterations(2);
+        return hashedCredentialsMatcher;
+    }
+
+    @Bean(name = "shiroRealm")
+    public KnightShiroRealm myShiroRealm(){
+        return new KnightShiroRealm();
+    }
+
+    @Bean(name = "shiroSessionDao")
+    public ShiroSessionDao shiroSessionDao(){
+        return new ShiroSessionDao();
+    }
+
+    @Bean(name = "sessionFactory")
+    public ShiroSessionFactory shiroSessionFactory(){
+        return new ShiroSessionFactory();
+    }
+
+    @Bean(name = "sessionFactory")
+    public SessionFactory sessionFactory(){
+        return new ShiroSessionFactory();
+    }
+
+    @Bean(name = "sessoinFactory")
+    public DefaultWebSessionManager sessionManager(){
+        DefaultWebSessionManager manager = new DefaultWebSessionManager();
+        manager.setSessionFactory(shiroSessionFactory());
+        manager.setSessionDAO(shiroSessionDao());
+        manager.setDeleteInvalidSessions(true);
+        //todo 设置 sessoin 的过期时间， 目前默认是半个小时
+        //manager.setGlobalSessionTimeout();
+        manager.setSessionValidationSchedulerEnabled(true);//是否定时检查session
+        return manager;
+    }
+
+    @Bean(name = "securityManager")
+    public SecurityManager securityManager(){
+        DefaultWebSecurityManager securityManager =  new DefaultWebSecurityManager();
+        securityManager.setRealm(myShiroRealm());
+        securityManager.setSessionManager(sessionManager());
+        return securityManager;
+    }
+
     @Bean(name = "shiroFilter")
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager){
         System.out.println("ShiroConfiguration.shiroFilter");
@@ -43,7 +96,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/logout","logout");
         //<!-- 过滤链定义，从上向下顺序执行，一般将/**放在最为下边 -->:这是一个坑呢，一不小心代码就不好使了;
         //<!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
-        filterChainDefinitionMap.put("/**","authc");
+        filterChainDefinitionMap.put("/**","anon");
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
         shiroFilterFactoryBean.setLoginUrl("/login");
         // 登录成功后要跳转的链接
@@ -52,29 +105,22 @@ public class ShiroConfig {
         //未授权界面;
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+
+        LinkedHashMap<String, Filter> filters = new LinkedHashMap<>();
+        shiroFilterFactoryBean.setFilters(filters);
         return shiroFilterFactoryBean;
     }
 
-    public HashedCredentialsMatcher hashedCredentialsMatcher(){
-        HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
-        hashedCredentialsMatcher.setHashAlgorithmName("md5");
-        hashedCredentialsMatcher.setHashIterations(2);
-        return hashedCredentialsMatcher;
-    }
-
+    /**
+     * 由 Advisor 决定对哪些类的方法进行AOP 代理
+     * @return
+     */
     @Bean
-    public KnightShiroRealm myShiroRealm(){
-        return new KnightShiroRealm();
-    }
-
-
-
-
-    @Bean
-    public SecurityManager securityManager(){
-        DefaultWebSecurityManager securityManager =  new DefaultWebSecurityManager();
-        securityManager.setRealm(myShiroRealm());
-        return securityManager;
+    @ConditionalOnMissingBean
+    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator(){
+        DefaultAdvisorAutoProxyCreator proxyCreator = new DefaultAdvisorAutoProxyCreator();
+        proxyCreator.setProxyTargetClass(true);
+        return proxyCreator;
     }
 
     /**

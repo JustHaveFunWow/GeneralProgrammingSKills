@@ -1,29 +1,37 @@
 package nimdanoob.knight.web.config.cache;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.boot.autoconfigure.data.redis.JedisClientConfigurationBuilderCustomizer;
-import org.springframework.cache.CacheManager;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
-import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
-
-import java.lang.reflect.Method;
 
 @Configuration
 @EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {
+
+    @Value("${spring.redis.host}")
+    private String host;
+
+    @Value("${spring.redis.port}")
+    private int port;
+
+    @Value("${spring.redis.timeout}")
+    private int timeout;
+
+    @Value("${spring.redis.jedis.pool.max-idle}")
+    private int maxIdle;
+
+    @Value("${spring.redis.jedis.pool.max-wait}")
+    private long maxWaitMillis;
+
+    @Value("${spring.redis.password}")
+    private String password;
 
     @Override
     @Bean
@@ -40,6 +48,24 @@ public class RedisConfig extends CachingConfigurerSupport {
             return sb.toString();
         };
     }
+
+    @Bean
+    public JedisPool redisPoolFactory() {
+        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+        jedisPoolConfig.setMaxIdle(maxIdle);
+        jedisPoolConfig.setMaxWaitMillis(maxWaitMillis);
+        //todo 如果有使用密码，则换一个构造函数
+        JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout);
+        return jedisPool;
+    }
+
+    @Bean
+    public RedisConnectionFactory redisConnectionFactory(){
+        JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory();
+        return jedisConnectionFactory;
+    }
+
+
 
 
 //    @Bean

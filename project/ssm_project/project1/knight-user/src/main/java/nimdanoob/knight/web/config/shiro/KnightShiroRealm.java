@@ -4,15 +4,25 @@ import nimdanoob.knight.web.domain.model.User;
 import nimdanoob.knight.web.domain.model.UserExample;
 import nimdanoob.knight.web.service.api.UserService;
 import org.apache.shiro.authc.*;
+import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 public class KnightShiroRealm extends AuthorizingRealm{
+
+
+    @PostConstruct
+    public void initCredentialsMatcher(){
+        setCredentialsMatcher(new KnightCredentialsMatcher());
+    }
+
+
     @Resource
     private UserService userService;
 
@@ -23,6 +33,7 @@ public class KnightShiroRealm extends AuthorizingRealm{
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+        //设置权限
         SimpleAuthorizationInfo authenticationInfo = new SimpleAuthorizationInfo();
         User primaryPrincipal = (User) principalCollection.getPrimaryPrincipal();
         // get user all role ,and put it to AuthenticationInfo's  String permission
@@ -32,7 +43,7 @@ public class KnightShiroRealm extends AuthorizingRealm{
 //                authorizationInfo.addStringPermission(p.getPermission());
 //            }
 //        }
-
+        authenticationInfo.addRole("loginedUser");
         return authenticationInfo;
     }
 
@@ -44,6 +55,7 @@ public class KnightShiroRealm extends AuthorizingRealm{
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+
         String username = (String) token.getPrincipal();
         String password = new String((char[])token.getCredentials());
         UserExample userExample = new UserExample();
@@ -52,14 +64,28 @@ public class KnightShiroRealm extends AuthorizingRealm{
 
         if (user == null)
             throw new UnknownAccountException();
-        // if locked return LockedAccountException
 
-        //使用CredentialsMatcher 进行密码匹配
-        if (username == null)
-            return null;
         return new SimpleAuthenticationInfo(user,
                 user.getPassword(),
                 ByteSource.Util.bytes(user.getSalt()),
                 getName());
+    }
+
+
+    @Override
+    public CredentialsMatcher getCredentialsMatcher() {
+        return super.getCredentialsMatcher();
+    }
+
+    class KnightCredentialsMatcher implements CredentialsMatcher{
+
+        @Override
+        public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {
+            String username = (String) token.getPrincipal();
+            String password = new String((char[])token.getCredentials());
+
+            User primaryPrincipal = (User) info.getPrincipals().getPrimaryPrincipal();
+            return userService.authUserAndPwd(primaryPrincipal, password);
+        }
     }
 }

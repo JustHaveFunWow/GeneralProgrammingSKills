@@ -10,4 +10,5 @@ import nimdanoob.knight.web.domain.model.UserExample;
 */
 public interface UserService extends BaseService<User, UserExample> {
     User authUserAndPwd(String userName, String pwd);
+    boolean authUserAndPwd(User dbUser,String pwd);
 }

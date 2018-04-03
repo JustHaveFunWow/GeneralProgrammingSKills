@@ -1,12 +1,13 @@
 package nimdanoob.knight.web.domain.model;
 
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import java.io.Serializable;
+import java.util.Date;
+
 @Data
-public class User {
+public class User implements Serializable{
     /**
      * 编号
      *

@@ -1,8 +1,10 @@
 package nimdanoob.knight.web.controller;
 
+import com.knight.common.result.BaseServerResponse;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import nimdanoob.knight.web.domain.model.User;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -17,14 +19,17 @@ public class UserController {
     static Map<Integer,User> users = Collections.synchronizedMap(new HashMap<Integer, User>());
     @ApiOperation(value = "获取用户列表",notes = "")
     @RequestMapping(value = "/",method = RequestMethod.GET)
-    public List<User> getUserList(){
+    @RequiresRoles(value = "loginedUser")
+    @ResponseBody
+    public BaseServerResponse getUserList(){
         ArrayList<User> r = new ArrayList<>(UserController.users.values());
-        return r;
+        return BaseServerResponse.createBySuccessMessage("users success");
     }
 
     @ApiOperation(value = "创建用户",notes = "根据User对象创建用户")
     @ApiImplicitParam(name = "user",value = "用户详细实体",required = true,dataType = "User")
     @RequestMapping(value = "/register",method = RequestMethod.POST)
+    @ResponseBody
     public String postUser(@ModelAttribute User user){
 
         users.put(user.getUserId(),user);
@@ -32,8 +37,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "{id}",method = RequestMethod.GET)
-    public User getUser(@PathVariable Integer id){
-        return users.get(id);
+    @ResponseBody
+    public String getUser(@PathVariable Integer id){
+        return "success";
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
