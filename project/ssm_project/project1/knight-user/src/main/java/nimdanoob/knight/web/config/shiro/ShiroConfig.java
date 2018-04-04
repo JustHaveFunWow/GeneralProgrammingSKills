@@ -1,8 +1,8 @@
 package nimdanoob.knight.web.config.shiro;
 
+import nimdanoob.knight.web.config.shiro.cache.ShrioRedisCacheManager;
 import nimdanoob.knight.web.config.shiro.filters.KnightAuthenticationFilter;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
-import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.mgt.SessionFactory;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -15,6 +15,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 
@@ -84,12 +85,14 @@ public class ShiroConfig {
         return manager;
     }
 
+
+
     @Bean(name = "securityManager")
-    public SecurityManager securityManager(){
+    public SecurityManager securityManager(RedisTemplate redisTemplate){
         DefaultWebSecurityManager securityManager =  new DefaultWebSecurityManager();
         securityManager.setRealm(myShiroRealm());
         securityManager.setSessionManager(sessionManager());
-        securityManager.setCacheManager(new MemoryConstrainedCacheManager());
+        securityManager.setCacheManager(new ShrioRedisCacheManager(redisTemplate));
         return securityManager;
     }
 
