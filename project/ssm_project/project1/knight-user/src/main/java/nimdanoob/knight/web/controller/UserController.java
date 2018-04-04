@@ -4,10 +4,14 @@ import com.knight.common.result.BaseServerResponse;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import nimdanoob.knight.web.domain.model.User;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/users")
@@ -19,8 +23,9 @@ public class UserController {
     static Map<Integer,User> users = Collections.synchronizedMap(new HashMap<Integer, User>());
     @ApiOperation(value = "获取用户列表",notes = "")
     @RequestMapping(value = "/",method = RequestMethod.GET)
-    @RequiresRoles(value = "loginedUser")
     @ResponseBody
+    @RequiresAuthentication
+    @RequiresRoles("loginedUser")
     public BaseServerResponse getUserList(){
         ArrayList<User> r = new ArrayList<>(UserController.users.values());
         return BaseServerResponse.createBySuccessMessage("users success");

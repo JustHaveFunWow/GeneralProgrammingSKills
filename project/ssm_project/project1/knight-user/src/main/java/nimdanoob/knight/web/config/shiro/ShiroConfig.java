@@ -1,11 +1,14 @@
 package nimdanoob.knight.web.config.shiro;
 
+import nimdanoob.knight.web.config.shiro.filters.KnightAuthenticationFilter;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.mgt.SessionFactory;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -70,8 +73,13 @@ public class ShiroConfig {
         manager.setSessionFactory(shiroSessionFactory());
         manager.setSessionDAO(shiroSessionDao());
         manager.setDeleteInvalidSessions(true);
+        manager.setSessionIdCookieEnabled(true);
         //todo 设置 sessoin 的过期时间， 目前默认是半个小时
         //manager.setGlobalSessionTimeout();
+        SimpleCookie simpleCookie = new SimpleCookie();
+        simpleCookie.setName("knight.session.id");
+        simpleCookie.setHttpOnly(true);
+        manager.setSessionIdCookie(simpleCookie);
         manager.setSessionValidationSchedulerEnabled(true);//是否定时检查session
         return manager;
     }
@@ -81,6 +89,7 @@ public class ShiroConfig {
         DefaultWebSecurityManager securityManager =  new DefaultWebSecurityManager();
         securityManager.setRealm(myShiroRealm());
         securityManager.setSessionManager(sessionManager());
+        securityManager.setCacheManager(new MemoryConstrainedCacheManager());
         return securityManager;
     }
 
@@ -94,6 +103,8 @@ public class ShiroConfig {
         //配置不会被拦截的连接 顺序判断
         filterChainDefinitionMap.put("/static/**","anon");
         filterChainDefinitionMap.put("/logout","logout");
+        filterChainDefinitionMap.put("/users/","authc");
+
         //<!-- 过滤链定义，从上向下顺序执行，一般将/**放在最为下边 -->:这是一个坑呢，一不小心代码就不好使了;
         //<!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
         filterChainDefinitionMap.put("/**","anon");
@@ -106,8 +117,7 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 
-        LinkedHashMap<String, Filter> filters = new LinkedHashMap<>();
-        shiroFilterFactoryBean.setFilters(filters);
+        shiroFilterFactoryBean.getFilters().put("authc", new KnightAuthenticationFilter());
         return shiroFilterFactoryBean;
     }
 

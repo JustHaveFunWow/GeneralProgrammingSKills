@@ -1,5 +1,6 @@
 package nimdanoob.knight.web.config.shiro;
 
+import nimdanoob.knight.web.common.Constants;
 import nimdanoob.knight.web.utils.SerializeUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.session.Session;
@@ -20,8 +21,8 @@ public class ShiroSessionDao extends CachingSessionDAO{
 
     private static final Logger logger = LoggerFactory.getLogger(ShiroSessionDao.class);
 
-    //保存到Redis中 key的前缀
-    private String prefix = "";
+    private String prefix = Constants.SESSION_ID_PREFIX;
+
     //会话的过期时间
     private int expireTime = 3000 * 1000;
 

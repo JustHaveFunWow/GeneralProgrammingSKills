@@ -55,7 +55,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         jedisPoolConfig.setMaxIdle(maxIdle);
         jedisPoolConfig.setMaxWaitMillis(maxWaitMillis);
         //todo 如果有使用密码，则换一个构造函数
-        JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout);
+        JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout,"root");
         return jedisPool;
     }
 

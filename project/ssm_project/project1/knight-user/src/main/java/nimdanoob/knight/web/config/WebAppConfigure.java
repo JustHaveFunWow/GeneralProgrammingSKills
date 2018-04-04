@@ -36,4 +36,5 @@ public class WebAppConfigure extends WebMvcConfigurerAdapter {
         super.addResourceHandlers(registry);
     }
 
+
 }
