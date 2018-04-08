@@ -18,7 +18,7 @@ public class MyBatisMapperScannerConfig {
         MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
 
         mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactory");
-        mapperScannerConfigurer.setBasePackage("nimdanoob.knight.web.domain.mapper");
+        mapperScannerConfigurer.setBasePackage("nimdanoob.knight.web.dao.mapper");
 
         return mapperScannerConfigurer;
     }

@@ -1,4 +1,4 @@
-package nimdanoob.knight.web.domain.model;
+package nimdanoob.knight.web.dao.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

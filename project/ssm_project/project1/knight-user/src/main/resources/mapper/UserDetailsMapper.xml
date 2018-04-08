@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="nimdanoob.knight.web.domain.mapper.UserDetailsMapper">
-  <resultMap id="BaseResultMap" type="nimdanoob.knight.web.domain.model.UserDetails">
+<mapper namespace="nimdanoob.knight.web.dao.mapper.UserDetailsMapper">
+  <resultMap id="BaseResultMap" type="nimdanoob.knight.web.dao.model.UserDetails">
     <id column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="signature" jdbcType="VARCHAR" property="signature" />
     <result column="real_name" jdbcType="VARCHAR" property="realName" />
@@ -70,7 +70,7 @@
   <sql id="Base_Column_List">
     user_id, signature, real_name, birthday, question, answer
   </sql>
-  <select id="selectByExample" parameterType="nimdanoob.knight.web.domain.model.UserDetailsExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="nimdanoob.knight.web.dao.model.UserDetailsExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -94,13 +94,13 @@
     delete from ucenter_user_details
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="nimdanoob.knight.web.domain.model.UserDetailsExample">
+  <delete id="deleteByExample" parameterType="nimdanoob.knight.web.dao.model.UserDetailsExample">
     delete from ucenter_user_details
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="nimdanoob.knight.web.domain.model.UserDetails">
+  <insert id="insert" parameterType="nimdanoob.knight.web.dao.model.UserDetails">
     insert into ucenter_user_details (user_id, signature, real_name, 
       birthday, question, answer
       )
@@ -108,7 +108,7 @@
       #{birthday,jdbcType=TIMESTAMP}, #{question,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="nimdanoob.knight.web.domain.model.UserDetails">
+  <insert id="insertSelective" parameterType="nimdanoob.knight.web.dao.model.UserDetails">
     insert into ucenter_user_details
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -151,7 +151,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="nimdanoob.knight.web.domain.model.UserDetailsExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="nimdanoob.knight.web.dao.model.UserDetailsExample" resultType="java.lang.Long">
     select count(*) from ucenter_user_details
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -195,7 +195,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="nimdanoob.knight.web.domain.model.UserDetails">
+  <update id="updateByPrimaryKeySelective" parameterType="nimdanoob.knight.web.dao.model.UserDetails">
     update ucenter_user_details
     <set>
       <if test="signature != null">
@@ -216,7 +216,7 @@
     </set>
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="nimdanoob.knight.web.domain.model.UserDetails">
+  <update id="updateByPrimaryKey" parameterType="nimdanoob.knight.web.dao.model.UserDetails">
     update ucenter_user_details
     set signature = #{signature,jdbcType=VARCHAR},
       real_name = #{realName,jdbcType=VARCHAR},

@@ -1,8 +1,8 @@
-package nimdanoob.knight.web.domain.mapper;
+package nimdanoob.knight.web.dao.mapper;
 
 import java.util.List;
-import nimdanoob.knight.web.domain.model.Oauth;
-import nimdanoob.knight.web.domain.model.OauthExample;
+import nimdanoob.knight.web.dao.model.Oauth;
+import nimdanoob.knight.web.dao.model.OauthExample;
 import org.apache.ibatis.annotations.Param;
 
 public interface OauthMapper {

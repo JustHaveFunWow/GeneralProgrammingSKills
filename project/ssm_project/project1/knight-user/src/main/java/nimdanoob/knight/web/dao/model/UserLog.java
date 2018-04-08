@@ -1,49 +1,49 @@
-package nimdanoob.knight.web.domain.model;
+package nimdanoob.knight.web.dao.model;
 
 import java.util.Date;
 import lombok.Data;
 
 @Data
-public class UserOauth {
+public class UserLog {
     /**
      * 编号
      *
      * @mbg.generated
      */
-    private Integer userOauthId;
+    private Integer userLogId;
 
     /**
-     * 帐号编号
+     * 用户编号
      *
      * @mbg.generated
      */
     private Integer userId;
 
     /**
-     * 认证方式编号
+     * 操作IP地址
      *
      * @mbg.generated
      */
-    private Integer oauthId;
+    private String ip;
 
     /**
-     * 绑定状态(0:解绑,1:绑定)
-     *
-     * @mbg.generated
-     */
-    private Byte status;
-
-    /**
-     * 创建时间
+     * 操作时间
      *
      * @mbg.generated
      */
     private Date createTime;
 
     /**
-     * 第三方ID
+     * 内容
      *
      * @mbg.generated
      */
-    private byte[] openId;
+    private byte[] content;
+
+    /**
+     * 操作环境
+     *
+     * @mbg.generated
+     */
+    private byte[] agent;
 }

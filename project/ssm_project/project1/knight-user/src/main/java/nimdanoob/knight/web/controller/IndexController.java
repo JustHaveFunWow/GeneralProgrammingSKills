@@ -1,6 +1,6 @@
 package nimdanoob.knight.web.controller;
 
-import nimdanoob.knight.web.domain.model.User;
+import nimdanoob.knight.web.dao.model.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.RequestMapping;

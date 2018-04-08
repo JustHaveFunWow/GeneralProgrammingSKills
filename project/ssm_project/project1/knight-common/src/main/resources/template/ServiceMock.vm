@@ -1,9 +1,9 @@
 package ${package_name}.service.api;
 
 import com.knight.common.base.BaseServiceMock;
-import ${package_name}.domain.mapper.${model}Mapper;
-import ${package_name}.domain.model.${model};
-import ${package_name}.domain.model.${model}Example;
+import ${package_name}.dao.mapper.${model}Mapper;
+import ${package_name}.dao.model.${model};
+import ${package_name}.dao.model.${model}Example;
 
 /**
 * 降级实现${model}Service接口

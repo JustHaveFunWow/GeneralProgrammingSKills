@@ -18,6 +18,10 @@
     <modules>
         <module>knight-common</module>
         <module>knight-user</module>
+        <module>knight-app</module>
+        <module>knight-user-api</module>
+        <module>knight-site</module>
+        <module>knight-api</module>
     </modules>
 
     <properties>

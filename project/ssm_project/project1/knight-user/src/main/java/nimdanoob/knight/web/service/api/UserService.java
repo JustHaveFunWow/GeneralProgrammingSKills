@@ -1,8 +1,8 @@
 package nimdanoob.knight.web.service.api;
 
 import com.knight.common.base.BaseService;
-import nimdanoob.knight.web.domain.model.User;
-import nimdanoob.knight.web.domain.model.UserExample;
+import nimdanoob.knight.web.dao.model.User;
+import nimdanoob.knight.web.dao.model.UserExample;
 
 /**
 * UserService接口

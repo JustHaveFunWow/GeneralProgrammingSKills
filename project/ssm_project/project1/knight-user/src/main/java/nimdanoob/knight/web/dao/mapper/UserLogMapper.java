@@ -1,8 +1,8 @@
-package nimdanoob.knight.web.domain.mapper;
+package nimdanoob.knight.web.dao.mapper;
 
 import java.util.List;
-import nimdanoob.knight.web.domain.model.UserLog;
-import nimdanoob.knight.web.domain.model.UserLogExample;
+import nimdanoob.knight.web.dao.model.UserLog;
+import nimdanoob.knight.web.dao.model.UserLogExample;
 import org.apache.ibatis.annotations.Param;
 
 public interface UserLogMapper {

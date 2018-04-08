@@ -2,9 +2,9 @@ package nimdanoob.knight.web.service.impl;
 
 import com.knight.common.annotation.BaseService;
 import com.knight.common.base.BaseServiceImpl;
-import nimdanoob.knight.web.domain.mapper.UserOauthMapper;
-import nimdanoob.knight.web.domain.model.UserOauth;
-import nimdanoob.knight.web.domain.model.UserOauthExample;
+import nimdanoob.knight.web.dao.mapper.UserOauthMapper;
+import nimdanoob.knight.web.dao.model.UserOauth;
+import nimdanoob.knight.web.dao.model.UserOauthExample;
 import nimdanoob.knight.web.service.api.UserOauthService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

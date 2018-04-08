@@ -1,4 +1,4 @@
-package nimdanoob.knight.web.domain.model;
+package nimdanoob.knight.web.dao.model;
 
 import java.util.Date;
 import lombok.Data;

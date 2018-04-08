@@ -63,7 +63,7 @@ public class MybatisGeneratorUtil {
 			serviceImpl_vm = MybatisGeneratorUtil.class.getResource(serviceImpl_vm).getPath();
 		}
 
-//		String targetProject = module + "/" + module + "-domain";
+//		String targetProject = module + "/" + module + "-dao";
 		String targetProject = "";
 //		String basePath = MybatisGeneratorUtil.class.getResource("/").getPath().replace("/target/classes/", "").replace(targetProject, "").replaceFirst("/", "");
 		String basePath = MybatisGeneratorUtil.class.getResource("/").getPath().replace("/target/classes/", "").replace(targetProject, "");
@@ -91,9 +91,9 @@ public class MybatisGeneratorUtil {
 
 			String targetProject_sqlMap = basePath;
 			context.put("tables", tables);
-			context.put("generator_javaModelGenerator_targetPackage", package_name + ".domain.model");
-			context.put("generator_sqlMapGenerator_targetPackage", package_name + ".domain.mapper");
-			context.put("generator_javaClientGenerator_targetPackage", package_name + ".domain.mapper");
+			context.put("generator_javaModelGenerator_targetPackage", package_name + ".dao.model");
+			context.put("generator_sqlMapGenerator_targetPackage", package_name + ".dao.mapper");
+			context.put("generator_javaClientGenerator_targetPackage", package_name + ".dao.mapper");
 			context.put("targetProject", targetProject);
 			context.put("targetProject_sqlMap", targetProject_sqlMap);
 			context.put("generator_jdbc_password", AESUtil.AESDecode(jdbc_password));
@@ -102,9 +102,9 @@ public class MybatisGeneratorUtil {
 
 			VelocityUtil.generate(generatorConfig_vm, generatorConfig_xml, context);
 			// 删除旧代码
-			deleteDir(new File(targetProject + "/src/main/java/" + package_name.replaceAll("\\.", "/") + "/domain/model"));
-			deleteDir(new File(targetProject + "/src/main/java/" + package_name.replaceAll("\\.", "/") + "/domain/mapper"));
-			deleteDir(new File(targetProject_sqlMap + "/src/main/java/" + package_name.replaceAll("\\.", "/") + "/domain/mapper"));
+			deleteDir(new File(targetProject + "/src/main/java/" + package_name.replaceAll("\\.", "/") + "/dao/model"));
+			deleteDir(new File(targetProject + "/src/main/java/" + package_name.replaceAll("\\.", "/") + "/dao/mapper"));
+			deleteDir(new File(targetProject_sqlMap + "/src/main/java/" + package_name.replaceAll("\\.", "/") + "/dao/mapper"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

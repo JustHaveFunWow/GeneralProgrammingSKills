@@ -1,8 +1,8 @@
-package nimdanoob.knight.web.domain.mapper;
+package nimdanoob.knight.web.dao.mapper;
 
 import java.util.List;
-import nimdanoob.knight.web.domain.model.User;
-import nimdanoob.knight.web.domain.model.UserExample;
+import nimdanoob.knight.web.dao.model.User;
+import nimdanoob.knight.web.dao.model.UserExample;
 import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {

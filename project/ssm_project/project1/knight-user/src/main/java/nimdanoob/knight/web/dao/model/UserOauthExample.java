@@ -1,17 +1,17 @@
-package nimdanoob.knight.web.domain.model;
+package nimdanoob.knight.web.dao.model;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class UserLogExample {
+public class UserOauthExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public UserLogExample() {
+    public UserOauthExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -105,63 +105,63 @@ public class UserLogExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andUserLogIdIsNull() {
-            addCriterion("user_log_id is null");
+        public Criteria andUserOauthIdIsNull() {
+            addCriterion("user_oauth_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andUserLogIdIsNotNull() {
-            addCriterion("user_log_id is not null");
+        public Criteria andUserOauthIdIsNotNull() {
+            addCriterion("user_oauth_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUserLogIdEqualTo(Integer value) {
-            addCriterion("user_log_id =", value, "userLogId");
+        public Criteria andUserOauthIdEqualTo(Integer value) {
+            addCriterion("user_oauth_id =", value, "userOauthId");
             return (Criteria) this;
         }
 
-        public Criteria andUserLogIdNotEqualTo(Integer value) {
-            addCriterion("user_log_id <>", value, "userLogId");
+        public Criteria andUserOauthIdNotEqualTo(Integer value) {
+            addCriterion("user_oauth_id <>", value, "userOauthId");
             return (Criteria) this;
         }
 
-        public Criteria andUserLogIdGreaterThan(Integer value) {
-            addCriterion("user_log_id >", value, "userLogId");
+        public Criteria andUserOauthIdGreaterThan(Integer value) {
+            addCriterion("user_oauth_id >", value, "userOauthId");
             return (Criteria) this;
         }
 
-        public Criteria andUserLogIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("user_log_id >=", value, "userLogId");
+        public Criteria andUserOauthIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("user_oauth_id >=", value, "userOauthId");
             return (Criteria) this;
         }
 
-        public Criteria andUserLogIdLessThan(Integer value) {
-            addCriterion("user_log_id <", value, "userLogId");
+        public Criteria andUserOauthIdLessThan(Integer value) {
+            addCriterion("user_oauth_id <", value, "userOauthId");
             return (Criteria) this;
         }
 
-        public Criteria andUserLogIdLessThanOrEqualTo(Integer value) {
-            addCriterion("user_log_id <=", value, "userLogId");
+        public Criteria andUserOauthIdLessThanOrEqualTo(Integer value) {
+            addCriterion("user_oauth_id <=", value, "userOauthId");
             return (Criteria) this;
         }
 
-        public Criteria andUserLogIdIn(List<Integer> values) {
-            addCriterion("user_log_id in", values, "userLogId");
+        public Criteria andUserOauthIdIn(List<Integer> values) {
+            addCriterion("user_oauth_id in", values, "userOauthId");
             return (Criteria) this;
         }
 
-        public Criteria andUserLogIdNotIn(List<Integer> values) {
-            addCriterion("user_log_id not in", values, "userLogId");
+        public Criteria andUserOauthIdNotIn(List<Integer> values) {
+            addCriterion("user_oauth_id not in", values, "userOauthId");
             return (Criteria) this;
         }
 
-        public Criteria andUserLogIdBetween(Integer value1, Integer value2) {
-            addCriterion("user_log_id between", value1, value2, "userLogId");
+        public Criteria andUserOauthIdBetween(Integer value1, Integer value2) {
+            addCriterion("user_oauth_id between", value1, value2, "userOauthId");
             return (Criteria) this;
         }
 
-        public Criteria andUserLogIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("user_log_id not between", value1, value2, "userLogId");
+        public Criteria andUserOauthIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("user_oauth_id not between", value1, value2, "userOauthId");
             return (Criteria) this;
         }
 
@@ -225,73 +225,123 @@ public class UserLogExample {
             return (Criteria) this;
         }
 
-        public Criteria andIpIsNull() {
-            addCriterion("ip is null");
+        public Criteria andOauthIdIsNull() {
+            addCriterion("oauth_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andIpIsNotNull() {
-            addCriterion("ip is not null");
+        public Criteria andOauthIdIsNotNull() {
+            addCriterion("oauth_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIpEqualTo(String value) {
-            addCriterion("ip =", value, "ip");
+        public Criteria andOauthIdEqualTo(Integer value) {
+            addCriterion("oauth_id =", value, "oauthId");
             return (Criteria) this;
         }
 
-        public Criteria andIpNotEqualTo(String value) {
-            addCriterion("ip <>", value, "ip");
+        public Criteria andOauthIdNotEqualTo(Integer value) {
+            addCriterion("oauth_id <>", value, "oauthId");
             return (Criteria) this;
         }
 
-        public Criteria andIpGreaterThan(String value) {
-            addCriterion("ip >", value, "ip");
+        public Criteria andOauthIdGreaterThan(Integer value) {
+            addCriterion("oauth_id >", value, "oauthId");
             return (Criteria) this;
         }
 
-        public Criteria andIpGreaterThanOrEqualTo(String value) {
-            addCriterion("ip >=", value, "ip");
+        public Criteria andOauthIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("oauth_id >=", value, "oauthId");
             return (Criteria) this;
         }
 
-        public Criteria andIpLessThan(String value) {
-            addCriterion("ip <", value, "ip");
+        public Criteria andOauthIdLessThan(Integer value) {
+            addCriterion("oauth_id <", value, "oauthId");
             return (Criteria) this;
         }
 
-        public Criteria andIpLessThanOrEqualTo(String value) {
-            addCriterion("ip <=", value, "ip");
+        public Criteria andOauthIdLessThanOrEqualTo(Integer value) {
+            addCriterion("oauth_id <=", value, "oauthId");
             return (Criteria) this;
         }
 
-        public Criteria andIpLike(String value) {
-            addCriterion("ip like", value, "ip");
+        public Criteria andOauthIdIn(List<Integer> values) {
+            addCriterion("oauth_id in", values, "oauthId");
             return (Criteria) this;
         }
 
-        public Criteria andIpNotLike(String value) {
-            addCriterion("ip not like", value, "ip");
+        public Criteria andOauthIdNotIn(List<Integer> values) {
+            addCriterion("oauth_id not in", values, "oauthId");
             return (Criteria) this;
         }
 
-        public Criteria andIpIn(List<String> values) {
-            addCriterion("ip in", values, "ip");
+        public Criteria andOauthIdBetween(Integer value1, Integer value2) {
+            addCriterion("oauth_id between", value1, value2, "oauthId");
             return (Criteria) this;
         }
 
-        public Criteria andIpNotIn(List<String> values) {
-            addCriterion("ip not in", values, "ip");
+        public Criteria andOauthIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("oauth_id not between", value1, value2, "oauthId");
             return (Criteria) this;
         }
 
-        public Criteria andIpBetween(String value1, String value2) {
-            addCriterion("ip between", value1, value2, "ip");
+        public Criteria andStatusIsNull() {
+            addCriterion("status is null");
             return (Criteria) this;
         }
 
-        public Criteria andIpNotBetween(String value1, String value2) {
-            addCriterion("ip not between", value1, value2, "ip");
+        public Criteria andStatusIsNotNull() {
+            addCriterion("status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusEqualTo(Byte value) {
+            addCriterion("status =", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotEqualTo(Byte value) {
+            addCriterion("status <>", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusGreaterThan(Byte value) {
+            addCriterion("status >", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusGreaterThanOrEqualTo(Byte value) {
+            addCriterion("status >=", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLessThan(Byte value) {
+            addCriterion("status <", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLessThanOrEqualTo(Byte value) {
+            addCriterion("status <=", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIn(List<Byte> values) {
+            addCriterion("status in", values, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotIn(List<Byte> values) {
+            addCriterion("status not in", values, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusBetween(Byte value1, Byte value2) {
+            addCriterion("status between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotBetween(Byte value1, Byte value2) {
+            addCriterion("status not between", value1, value2, "status");
             return (Criteria) this;
         }
 

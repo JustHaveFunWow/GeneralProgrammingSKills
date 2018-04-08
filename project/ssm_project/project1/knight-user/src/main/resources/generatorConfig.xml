@@ -48,13 +48,13 @@
                         password="root" />
 
         <!-- model生成 -->
-        <javaModelGenerator targetPackage="nimdanoob.knight.web.domain.model" targetProject="/Users/hb/code/mygithub/GeneralProgrammingSKills/project/ssm_project/project1/knight-user//src/main/java" />
+        <javaModelGenerator targetPackage="nimdanoob.knight.web.dao.model" targetProject="/Users/hb/code/mygithub/GeneralProgrammingSKills/project/ssm_project/project1/knight-user//src/main/java" />
 
         <!-- MapperXML生成 -->
         <sqlMapGenerator targetPackage="mapper" targetProject="/Users/hb/code/mygithub/GeneralProgrammingSKills/project/ssm_project/project1/knight-user/src/main/resources" />
 
         <!-- Mapper接口生成 -->
-        <javaClientGenerator targetPackage="nimdanoob.knight.web.domain.mapper" targetProject="/Users/hb/code/mygithub/GeneralProgrammingSKills/project/ssm_project/project1/knight-user//src/main/java" type="XMLMAPPER" />
+        <javaClientGenerator targetPackage="nimdanoob.knight.web.dao.mapper" targetProject="/Users/hb/code/mygithub/GeneralProgrammingSKills/project/ssm_project/project1/knight-user//src/main/java" type="XMLMAPPER" />
 
         <!-- 需要映射的表 -->
                                     <table tableName="ucenter_oauth" domainObjectName="Oauth">

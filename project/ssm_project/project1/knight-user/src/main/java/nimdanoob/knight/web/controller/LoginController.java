@@ -3,8 +3,8 @@ package nimdanoob.knight.web.controller;
 
 import com.knight.common.result.BaseServerResponse;
 import nimdanoob.knight.web.common.ErrorCode;
-import nimdanoob.knight.web.domain.model.User;
-import nimdanoob.knight.web.domain.model.UserExample;
+import nimdanoob.knight.web.dao.model.User;
+import nimdanoob.knight.web.dao.model.UserExample;
 import nimdanoob.knight.web.service.api.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;

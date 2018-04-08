@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="nimdanoob.knight.web.domain.mapper.UserLogMapper">
-  <resultMap id="BaseResultMap" type="nimdanoob.knight.web.domain.model.UserLog">
+<mapper namespace="nimdanoob.knight.web.dao.mapper.UserLogMapper">
+  <resultMap id="BaseResultMap" type="nimdanoob.knight.web.dao.model.UserLog">
     <id column="user_log_id" jdbcType="INTEGER" property="userLogId" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="ip" jdbcType="VARCHAR" property="ip" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="nimdanoob.knight.web.domain.model.UserLog">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="nimdanoob.knight.web.dao.model.UserLog">
     <result column="content" jdbcType="VARBINARY" property="content" />
     <result column="agent" jdbcType="VARBINARY" property="agent" />
   </resultMap>
@@ -75,7 +75,7 @@
   <sql id="Blob_Column_List">
     content, agent
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="nimdanoob.knight.web.domain.model.UserLogExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="nimdanoob.knight.web.dao.model.UserLogExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -91,7 +91,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="nimdanoob.knight.web.domain.model.UserLogExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="nimdanoob.knight.web.dao.model.UserLogExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -117,13 +117,13 @@
     delete from ucenter_user_log
     where user_log_id = #{userLogId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="nimdanoob.knight.web.domain.model.UserLogExample">
+  <delete id="deleteByExample" parameterType="nimdanoob.knight.web.dao.model.UserLogExample">
     delete from ucenter_user_log
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="nimdanoob.knight.web.domain.model.UserLog">
+  <insert id="insert" parameterType="nimdanoob.knight.web.dao.model.UserLog">
     insert into ucenter_user_log (user_log_id, user_id, ip, 
       create_time, content, agent
       )
@@ -131,7 +131,7 @@
       #{createTime,jdbcType=TIMESTAMP}, #{content,jdbcType=VARBINARY}, #{agent,jdbcType=VARBINARY}
       )
   </insert>
-  <insert id="insertSelective" parameterType="nimdanoob.knight.web.domain.model.UserLog">
+  <insert id="insertSelective" parameterType="nimdanoob.knight.web.dao.model.UserLog">
     insert into ucenter_user_log
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userLogId != null">
@@ -174,7 +174,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="nimdanoob.knight.web.domain.model.UserLogExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="nimdanoob.knight.web.dao.model.UserLogExample" resultType="java.lang.Long">
     select count(*) from ucenter_user_log
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -228,7 +228,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="nimdanoob.knight.web.domain.model.UserLog">
+  <update id="updateByPrimaryKeySelective" parameterType="nimdanoob.knight.web.dao.model.UserLog">
     update ucenter_user_log
     <set>
       <if test="userId != null">
@@ -249,7 +249,7 @@
     </set>
     where user_log_id = #{userLogId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="nimdanoob.knight.web.domain.model.UserLog">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="nimdanoob.knight.web.dao.model.UserLog">
     update ucenter_user_log
     set user_id = #{userId,jdbcType=INTEGER},
       ip = #{ip,jdbcType=VARCHAR},
@@ -258,7 +258,7 @@
       agent = #{agent,jdbcType=VARBINARY}
     where user_log_id = #{userLogId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="nimdanoob.knight.web.domain.model.UserLog">
+  <update id="updateByPrimaryKey" parameterType="nimdanoob.knight.web.dao.model.UserLog">
     update ucenter_user_log
     set user_id = #{userId,jdbcType=INTEGER},
       ip = #{ip,jdbcType=VARCHAR},

@@ -1,7 +1,7 @@
 package nimdanoob.knight.web.config.shiro;
 
-import nimdanoob.knight.web.domain.model.User;
-import nimdanoob.knight.web.domain.model.UserExample;
+import nimdanoob.knight.web.dao.model.User;
+import nimdanoob.knight.web.dao.model.UserExample;
 import nimdanoob.knight.web.service.api.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.CredentialsMatcher;

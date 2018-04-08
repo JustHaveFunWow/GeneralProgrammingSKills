@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="nimdanoob.knight.web.domain.mapper.CityMapper">
-  <resultMap id="BaseResultMap" type="nimdanoob.knight.web.domain.model.City">
+<mapper namespace="nimdanoob.knight.web.dao.mapper.CityMapper">
+  <resultMap id="BaseResultMap" type="nimdanoob.knight.web.dao.model.City">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="province_id" jdbcType="INTEGER" property="provinceId" />
     <result column="city_name" jdbcType="VARCHAR" property="cityName" />
@@ -68,7 +68,7 @@
   <sql id="Base_Column_List">
     id, province_id, city_name, description
   </sql>
-  <select id="selectByExample" parameterType="nimdanoob.knight.web.domain.model.CityExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="nimdanoob.knight.web.dao.model.CityExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -92,19 +92,19 @@
     delete from knight_city
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="nimdanoob.knight.web.domain.model.CityExample">
+  <delete id="deleteByExample" parameterType="nimdanoob.knight.web.dao.model.CityExample">
     delete from knight_city
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="nimdanoob.knight.web.domain.model.City">
+  <insert id="insert" parameterType="nimdanoob.knight.web.dao.model.City">
     insert into knight_city (id, province_id, city_name, 
       description)
     values (#{id,jdbcType=INTEGER}, #{provinceId,jdbcType=INTEGER}, #{cityName,jdbcType=VARCHAR}, 
       #{description,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="nimdanoob.knight.web.domain.model.City">
+  <insert id="insertSelective" parameterType="nimdanoob.knight.web.dao.model.City">
     insert into knight_city
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -135,7 +135,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="nimdanoob.knight.web.domain.model.CityExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="nimdanoob.knight.web.dao.model.CityExample" resultType="java.lang.Long">
     select count(*) from knight_city
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -171,7 +171,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="nimdanoob.knight.web.domain.model.City">
+  <update id="updateByPrimaryKeySelective" parameterType="nimdanoob.knight.web.dao.model.City">
     update knight_city
     <set>
       <if test="provinceId != null">
@@ -186,7 +186,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="nimdanoob.knight.web.domain.model.City">
+  <update id="updateByPrimaryKey" parameterType="nimdanoob.knight.web.dao.model.City">
     update knight_city
     set province_id = #{provinceId,jdbcType=INTEGER},
       city_name = #{cityName,jdbcType=VARCHAR},

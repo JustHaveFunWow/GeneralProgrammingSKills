@@ -11,12 +11,10 @@
     <name>knight-user</name>
     <description>Start Project for Spring Boot</description>
 
-    <!--核心模块，包括自动配置支持，日志 和YAML-->
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.0.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <artifactId>project1</artifactId>
+        <groupId>com.knight</groupId>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
     <properties>
@@ -29,6 +27,12 @@
     </properties>
 
     <dependencies>
+        <!--核心模块，包括自动配置支持，日志 和YAML-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-parent</artifactId>
+            <version>2.0.0.RELEASE</version>
+        </dependency>
         <dependency>
             <groupId>com.knight</groupId>
             <artifactId>knight-common</artifactId>

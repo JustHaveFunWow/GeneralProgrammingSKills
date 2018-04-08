@@ -3,7 +3,7 @@ package nimdanoob.knight.web.controller;
 import com.knight.common.result.BaseServerResponse;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
-import nimdanoob.knight.web.domain.model.User;
+import nimdanoob.knight.web.dao.model.User;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.web.bind.annotation.*;

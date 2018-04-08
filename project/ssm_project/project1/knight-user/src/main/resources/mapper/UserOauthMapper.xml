@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="nimdanoob.knight.web.domain.mapper.UserOauthMapper">
-  <resultMap id="BaseResultMap" type="nimdanoob.knight.web.domain.model.UserOauth">
+<mapper namespace="nimdanoob.knight.web.dao.mapper.UserOauthMapper">
+  <resultMap id="BaseResultMap" type="nimdanoob.knight.web.dao.model.UserOauth">
     <id column="user_oauth_id" jdbcType="INTEGER" property="userOauthId" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="oauth_id" jdbcType="INTEGER" property="oauthId" />
     <result column="status" jdbcType="TINYINT" property="status" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="nimdanoob.knight.web.domain.model.UserOauth">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="nimdanoob.knight.web.dao.model.UserOauth">
     <result column="open_id" jdbcType="VARBINARY" property="openId" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -75,7 +75,7 @@
   <sql id="Blob_Column_List">
     open_id
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="nimdanoob.knight.web.domain.model.UserOauthExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="nimdanoob.knight.web.dao.model.UserOauthExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -91,7 +91,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="nimdanoob.knight.web.domain.model.UserOauthExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="nimdanoob.knight.web.dao.model.UserOauthExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -117,13 +117,13 @@
     delete from ucenter_user_oauth
     where user_oauth_id = #{userOauthId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="nimdanoob.knight.web.domain.model.UserOauthExample">
+  <delete id="deleteByExample" parameterType="nimdanoob.knight.web.dao.model.UserOauthExample">
     delete from ucenter_user_oauth
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="nimdanoob.knight.web.domain.model.UserOauth">
+  <insert id="insert" parameterType="nimdanoob.knight.web.dao.model.UserOauth">
     insert into ucenter_user_oauth (user_oauth_id, user_id, oauth_id, 
       status, create_time, open_id
       )
@@ -131,7 +131,7 @@
       #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{openId,jdbcType=VARBINARY}
       )
   </insert>
-  <insert id="insertSelective" parameterType="nimdanoob.knight.web.domain.model.UserOauth">
+  <insert id="insertSelective" parameterType="nimdanoob.knight.web.dao.model.UserOauth">
     insert into ucenter_user_oauth
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userOauthId != null">
@@ -174,7 +174,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="nimdanoob.knight.web.domain.model.UserOauthExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="nimdanoob.knight.web.dao.model.UserOauthExample" resultType="java.lang.Long">
     select count(*) from ucenter_user_oauth
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -229,7 +229,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="nimdanoob.knight.web.domain.model.UserOauth">
+  <update id="updateByPrimaryKeySelective" parameterType="nimdanoob.knight.web.dao.model.UserOauth">
     update ucenter_user_oauth
     <set>
       <if test="userId != null">
@@ -250,7 +250,7 @@
     </set>
     where user_oauth_id = #{userOauthId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="nimdanoob.knight.web.domain.model.UserOauth">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="nimdanoob.knight.web.dao.model.UserOauth">
     update ucenter_user_oauth
     set user_id = #{userId,jdbcType=INTEGER},
       oauth_id = #{oauthId,jdbcType=INTEGER},
@@ -259,7 +259,7 @@
       open_id = #{openId,jdbcType=VARBINARY}
     where user_oauth_id = #{userOauthId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="nimdanoob.knight.web.domain.model.UserOauth">
+  <update id="updateByPrimaryKey" parameterType="nimdanoob.knight.web.dao.model.UserOauth">
     update ucenter_user_oauth
     set user_id = #{userId,jdbcType=INTEGER},
       oauth_id = #{oauthId,jdbcType=INTEGER},
