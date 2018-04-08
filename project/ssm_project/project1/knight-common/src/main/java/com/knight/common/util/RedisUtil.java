@@ -1,6 +1,5 @@
-package nimdanoob.knight.web.utils;
+package com.knight.common.util;
 
-import com.knight.common.util.SpringContextUtil;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -57,7 +57,6 @@ public class KnightShiroRealm extends AuthorizingRealm{
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 
         String username = (String) token.getPrincipal();
-        String password = new String((char[])token.getCredentials());
         UserExample userExample = new UserExample();
         userExample.createCriteria().andUserNameEqualTo(username);
         User user = userService.selectFirstByExample(userExample);

@@ -1,7 +1,7 @@
 package nimdanoob.knight.web.config.shiro.cache;
 
 import com.google.common.collect.Sets;
-import nimdanoob.knight.web.utils.SerializeUtils;
+import com.knight.common.util.SerializeUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

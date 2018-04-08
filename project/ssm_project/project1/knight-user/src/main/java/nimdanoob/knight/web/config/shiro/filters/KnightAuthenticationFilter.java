@@ -1,7 +1,7 @@
 package nimdanoob.knight.web.config.shiro.filters;
 
 import nimdanoob.knight.web.common.Constants;
-import nimdanoob.knight.web.utils.RedisUtil;
+import com.knight.common.util.RedisUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;

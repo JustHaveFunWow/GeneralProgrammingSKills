@@ -1,7 +1,7 @@
 package nimdanoob.knight.web.config.shiro;
 
 import nimdanoob.knight.web.common.Constants;
-import nimdanoob.knight.web.utils.SerializeUtils;
+import com.knight.common.util.SerializeUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.ValidatingSession;
@@ -71,7 +71,7 @@ public class ShiroSessionDao extends CachingSessionDAO{
         try {
             jedis = jedisPool.getResource();
             session.setTimeout(expireTime);
-            jedis.setex(prefix + sessionId,expireTime, SerializeUtils.serializaToString(((ShiroSession) session)));
+            jedis.setex(prefix + sessionId,expireTime, SerializeUtils.serializeToString(((ShiroSession) session)));
 
         } catch (Exception e){
             logger.error("创建session 失败",e);

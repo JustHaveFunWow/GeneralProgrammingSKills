@@ -83,8 +83,12 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/logout",method = RequestMethod.GET)
-    public String logout(){
-        return null;
+    @ResponseBody
+    public BaseServerResponse logout(){
+        //退出登录
+        SecurityUtils.getSubject().logout();
+
+        return BaseServerResponse.createBySuccess();
     }
 
 
