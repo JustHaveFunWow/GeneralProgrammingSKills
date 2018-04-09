@@ -11,6 +11,8 @@
 
     <artifactId>knight-ucenter-dao</artifactId>
 
+    <packaging>jar</packaging>
+
     <dependencies>
         <dependency>
             <groupId>com.knight</groupId>

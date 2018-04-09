@@ -18,4 +18,6 @@
             <version>1.0.0</version>
         </dependency>
     </dependencies>
+
+    <!--打包发布jar 文件-->
 </project>
