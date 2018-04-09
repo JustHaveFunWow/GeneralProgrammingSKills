@@ -1,4 +1,4 @@
-package ${package_name}.service.api;
+package ${package_name}.api;
 
 import com.knight.common.base.BaseService;
 import ${package_name}.dao.model.${model};

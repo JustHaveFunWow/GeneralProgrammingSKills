@@ -1,4 +1,4 @@
-package ${package_name}.service.api;
+package ${package_name}.api;
 
 import com.knight.common.base.BaseServiceMock;
 import ${package_name}.dao.mapper.${model}Mapper;

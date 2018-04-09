@@ -66,11 +66,12 @@
             #if($last_insert_id_tables.containsKey($!table.table_name) == true)
                 <table tableName="$!table.table_name" domainObjectName="$!table.model_name">
                     <generatedKey column="$!last_insert_id_tables.get($!table.table_name)" sqlStatement="MySql" identity="true"/>
-                    <domainObjectRenamingRule searchString="^${table_prefix}" replaceString="" />
+                    <domainObjectRenamingRule searchString="^${table_prefix}" replaceString="${table_prefix_replace}" />
                 </table>
             #else
                 <table tableName="$!table.table_name" domainObjectName="$!table.model_name">
-                    <domainObjectRenamingRule searchString="^${table_prefix}" replaceString="" />
+                    <!--去除 数据库的 前缀 -->
+                    <domainObjectRenamingRule searchString="^${table_prefix}" replaceString="${table_prefix_replace}" />
                 </table>
             #end
         #end

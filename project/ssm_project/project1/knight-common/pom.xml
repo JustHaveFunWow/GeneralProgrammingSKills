@@ -15,7 +15,7 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
     <artifactId>knight-common</artifactId>
-    <version>0.0.1</version>
+    <version>1.0.0</version>
 
 
 
@@ -135,6 +135,14 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-compress</artifactId>
             <version>1.12</version>
+        </dependency>
+
+
+        <!--用于 MybatisGenerator 自动生成类-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
         </dependency>
 
         <!--lombok-->

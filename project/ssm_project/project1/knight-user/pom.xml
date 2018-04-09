@@ -14,7 +14,7 @@
     <parent>
         <artifactId>project1</artifactId>
         <groupId>com.knight</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <properties>
@@ -36,7 +36,7 @@
         <dependency>
             <groupId>com.knight</groupId>
             <artifactId>knight-common</artifactId>
-            <version>0.0.1</version>
+            <version>1.0.0</version>
             <type>jar</type>
         </dependency>
 
