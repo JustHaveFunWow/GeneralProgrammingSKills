@@ -101,6 +101,12 @@
             <version>1.4.0</version>
         </dependency>
 
+        <!--druid-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
 
         <!-- velocity模板引擎 -->
         <dependency>
