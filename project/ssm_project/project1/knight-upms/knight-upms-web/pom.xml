@@ -11,5 +11,11 @@
 
     <artifactId>knight-upms-server</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.knight</groupId>
+            <artifactId>knight-upms-client</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+    </dependencies>
 </project>

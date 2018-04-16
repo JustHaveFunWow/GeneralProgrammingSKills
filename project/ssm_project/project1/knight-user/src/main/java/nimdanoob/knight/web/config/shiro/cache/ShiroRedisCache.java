@@ -13,16 +13,16 @@ import org.springframework.data.redis.core.ValueOperations;
 import java.io.Serializable;
 import java.util.*;
 
-public class ShrioRedisCache<K, V> implements Cache<K, V> {
+public class ShiroRedisCache<K, V> implements Cache<K, V> {
 	private Logger log = LogManager.getLogger(getClass());
 	private RedisTemplate<byte[], V> redisTemplate;
 	private String prefix = "shiro_redis:";
 
-	public ShrioRedisCache(RedisTemplate<byte[], V> redisTemplate) {
+	public ShiroRedisCache(RedisTemplate<byte[], V> redisTemplate) {
 		this.redisTemplate = redisTemplate;
 	}
 
-	public ShrioRedisCache(RedisTemplate<byte[], V> redisTemplate, String prefix) {
+	public ShiroRedisCache(RedisTemplate<byte[], V> redisTemplate, String prefix) {
 		this(redisTemplate);
 		this.prefix = prefix;
 	}

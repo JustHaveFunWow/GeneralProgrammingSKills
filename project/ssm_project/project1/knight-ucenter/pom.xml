@@ -16,6 +16,6 @@
         <module>knight-ucenter-dao</module>
         <module>knight-ucenter-api</module>
         <module>knight-ucenter-service</module>
-        <module>knight-ucenter-server</module>
+        <module>knight-ucenter-web</module>
     </modules>
 </project>

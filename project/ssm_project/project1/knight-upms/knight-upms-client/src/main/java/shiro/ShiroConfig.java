@@ -1,7 +1,5 @@
-package nimdanoob.knight.web.config.shiro;
+package shiro;
 
-import nimdanoob.knight.web.config.shiro.cache.ShiroRedisCacheManager;
-import nimdanoob.knight.web.config.shiro.filters.KnightAuthenticationFilter;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.mgt.SessionFactory;
@@ -18,6 +16,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
+import shiro.cache.ShiroRedisCacheManager;
+import shiro.filters.KnightAuthenticationFilter;
 
 import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
