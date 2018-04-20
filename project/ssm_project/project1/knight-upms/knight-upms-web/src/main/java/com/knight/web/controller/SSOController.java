@@ -2,9 +2,11 @@ package com.knight.web.controller;
 
 
 import com.knight.common.result.BaseServerResponse;
+import com.knight.common.util.PropertiesFileUtil;
 import com.knight.common.util.RedisUtil;
 import com.knight.upms.api.UpmsSystemService;
 import com.knight.upms.api.UpmsUserService;
+import com.knight.upms.dao.model.UpmsSystem;
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -20,9 +22,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import shiro.ShiroSessionDao;
 
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.UUID;
 
 @RequestMapping("/sso")
 
@@ -74,8 +77,28 @@ public class SSOController {
             } catch (IncorrectCredentialsException e){
                 return BaseServerResponse.createByErrorCodeMessage(1,"凭证错误");
             }catch (LockedAccountException e){
-                return BaseServerResponse.createByErrorCodeMessage(1,"账号已存在");
+                return BaseServerResponse.createByErrorCodeMessage(1,"账号已被锁定");
             }
+            //更新session装填
+
+            RedisUtil.lpush(KNIGHT_UPMS_SERVER_SESSION_IDS,sessionId.toString());
+            //todo 验证账号密码是否正确，如果正确创建code
+            String code = UUID.randomUUID().toString();
+            //全局会话的code
+            RedisUtil.set(KNIGHT_UPMS_SERVER_SESSION_ID+"_"+sessionId,code,(int)subject.getSession().getTimeout() /1000);
+
+        }
+
+        //回调登录前地址
+        String backurl = request.getParameter("backurl");
+        if (!StringUtils.isBlank(backurl)){
+            UpmsSystem upmsSystem = upmsSystemService.selectUpmsSystemByName(PropertiesFileUtil.getInstance().get("app.name"));
+            backurl = null == upmsSystem?"/":upmsSystem.getBasepath();
+            HashMap<String, String> map = new HashMap<>();
+            map.put("backurl",backurl);
+            return BaseServerResponse.createBySuccess("登录成功",map);
+        }else {
+            return BaseServerResponse.createBySuccess("登录成功");
         }
 
 

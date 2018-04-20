@@ -9,5 +9,10 @@ import com.knight.upms.dao.model.UpmsSystemExample;
 * Created by shuknight on 2018/4/9.
 */
 public interface UpmsSystemService extends BaseService<UpmsSystem, UpmsSystemExample> {
-
+    /**
+     * 根据name获取UpmsSystem
+     * @param name
+     * @return
+     */
+    UpmsSystem selectUpmsSystemByName(String name);
 }
