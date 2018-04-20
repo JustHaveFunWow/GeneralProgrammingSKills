@@ -19,6 +19,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 @BaseService
+@com.alibaba.dubbo.config.annotation.Service(version = "1.0.0",
+        application = "${dubbo.application.id}",
+        protocol = "${dubbo.protocol.id}",
+        registry = "${dubbo.registry.id}")
 public class UpmsLogServiceImpl extends BaseServiceImpl<UpmsLogMapper, UpmsLog, UpmsLogExample> implements UpmsLogService {
 
     private static Logger _log = LoggerFactory.getLogger(UpmsLogServiceImpl.class);
@@ -26,4 +30,8 @@ public class UpmsLogServiceImpl extends BaseServiceImpl<UpmsLogMapper, UpmsLog, 
     @Autowired
     UpmsLogMapper upmsLogMapper;
 
+    @Override
+    public String test() {
+        return null;
+    }
 }

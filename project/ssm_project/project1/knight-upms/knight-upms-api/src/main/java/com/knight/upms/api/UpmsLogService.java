@@ -10,4 +10,5 @@ import com.knight.upms.dao.model.UpmsLogExample;
 */
 public interface UpmsLogService extends BaseService<UpmsLog, UpmsLogExample> {
 
+     String test();
 }

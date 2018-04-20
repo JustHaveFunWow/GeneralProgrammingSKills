@@ -8,15 +8,14 @@
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <version>1.0.0</version>
+    <artifactId>knight.sql</artifactId>
 
-    <artifactId>knight-upms</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>knight-upms-dao</module>
-        <module>knight-upms-api</module>
-        <module>knight-upms-client</module>
-        <module>knight-upms-service</module>
-        <module>knight-upms-server</module>
-    </modules>
-
+    <dependencies>
+        <dependency>
+            <groupId>com.knight</groupId>
+            <artifactId>knight-common</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+    </dependencies>
 </project>

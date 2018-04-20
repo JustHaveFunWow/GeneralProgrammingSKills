@@ -3,20 +3,21 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>project1</artifactId>
+        <artifactId>knight-upms</artifactId>
         <groupId>com.knight</groupId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>knight-upms</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>knight-upms-dao</module>
-        <module>knight-upms-api</module>
-        <module>knight-upms-client</module>
-        <module>knight-upms-service</module>
-        <module>knight-upms-server</module>
-    </modules>
+    <artifactId>knight-upms-server</artifactId>
 
+    <packaging>war</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>com.knight</groupId>
+            <artifactId>knight-upms-client</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+    </dependencies>
 </project>
