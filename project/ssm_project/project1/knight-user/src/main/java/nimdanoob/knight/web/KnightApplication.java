@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.stereotype.Service;
 
 // 没有配置数据库 暂时，exclude autoconfig
 @SpringBootApplication()
@@ -13,8 +14,8 @@ import org.springframework.context.annotation.ImportResource;
 @EnableCaching
 @ImportResource({"classpath*:applicationContext.xml"})
 public class KnightApplication {
-
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(KnightApplication.class, args);
+
 	}
 }

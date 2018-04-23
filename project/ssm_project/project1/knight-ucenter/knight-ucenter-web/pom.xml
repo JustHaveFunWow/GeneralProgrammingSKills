@@ -17,6 +17,16 @@
             <artifactId>knight-ucenter-service</artifactId>
             <version>1.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.knight</groupId>
+            <artifactId>knight-upms-api</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>2.5.6</version>
+        </dependency>
     </dependencies>
 
     <!--打包发布jar 文件-->

@@ -32,6 +32,7 @@ public class UpmsLogServiceImpl extends BaseServiceImpl<UpmsLogMapper, UpmsLog, 
 
     @Override
     public String test() {
+        _log.error("远程调用测试成功");
         return null;
     }
 }
