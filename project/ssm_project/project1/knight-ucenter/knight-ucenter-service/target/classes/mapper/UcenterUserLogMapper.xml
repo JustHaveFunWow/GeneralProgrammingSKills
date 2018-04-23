@@ -265,5 +265,4 @@
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where user_log_id = #{userLogId,jdbcType=INTEGER}
   </update>
-  <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
 </mapper>

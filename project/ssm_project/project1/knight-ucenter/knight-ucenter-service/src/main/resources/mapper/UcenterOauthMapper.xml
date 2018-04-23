@@ -161,5 +161,4 @@
     set name = #{name,jdbcType=VARCHAR}
     where oauth_id = #{oauthId,jdbcType=INTEGER}
   </update>
-  <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
 </mapper>

@@ -3,6 +3,7 @@ package com.knight.config;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.caches.ehcache.LoggingEhcache;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,8 +21,8 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 import javax.sql.DataSource;
 import java.io.IOException;
 
-@Configuration
-@EnableTransactionManagement
+//@Configuration
+//@EnableTransactionManagement
 public class MybatisConfiguration implements TransactionManagementConfigurer {
 
     private static Log logger = LogFactory.getLog(MybatisConfiguration.class);
@@ -79,7 +80,5 @@ public class MybatisConfiguration implements TransactionManagementConfigurer {
     public PlatformTransactionManager annotationDrivenTransactionManager() {
         return new DataSourceTransactionManager(dataSource);
     }
-
-
 
 }
