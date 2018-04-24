@@ -16,9 +16,9 @@
     <!--&lt;!&ndash; 消费方缺省配置，当ReferenceConfig某属性没有配置时，采用此缺省值，可选。&ndash;&gt;-->
     <!--<dubbo:consumer version="${dubbo.provider.version}" />-->
 
-    <dubbo:annotation package=" com.knight.ucenter.server"/>
+    <dubbo:annotation package=" com.knight.ucenter.server.controller"/>
 
-    <dubbo:service interface="com.knight.upms.api.UpmsLogService" ref="upmsLogService" />
+    <!--<dubbo:reference interface="com.knight.upms.api.UpmsLogService" id="upmsLogService" />-->
 
 
 </beans>

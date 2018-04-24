@@ -1,5 +1,6 @@
 package com.knight.upms.service.impl;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.knight.common.annotation.BaseService;
 import com.knight.common.base.BaseServiceImpl;
 import com.knight.upms.dao.mapper.UpmsLogMapper;
@@ -18,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 */
 //@Component
 //@Transactional
-@org.springframework.stereotype.Service("upmsLogService")
+@Service(version = "1.0.0")
 @BaseService
 public class UpmsLogServiceImpl extends BaseServiceImpl<UpmsLogMapper, UpmsLog, UpmsLogExample> implements UpmsLogService {
 

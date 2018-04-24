@@ -13,7 +13,9 @@
     <dubbo:registry address="zookeeper://127.0.0.1:4180" />
     <!-- 用dubbo协议在20880端口暴露服务 -->
     <dubbo:protocol name="dubbo" port="20881" />
+
+    <dubbo:annotation package="com.knight.upms.service.impl"/>
     <!-- 声明需要暴露的服务接口 -->
-    <dubbo:service interface="com.knight.upms.api.UpmsLogService" ref="upmsLogService" />
+    <!--<dubbo:service interface="com.knight.upms.api.UpmsLogService" ref="upmsLogService" />-->
 
 </beans>
