@@ -12,7 +12,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 public class SignController {
     @Autowired
     UcenterUserService ucenterUserService;
-    @Reference( version="1.0.0")
+    @Reference(version = "1.0.0",check = true)
     UpmsLogService upmsLogService;
 
     @RequestMapping(value = "/register",method = {RequestMethod.POST,RequestMethod.GET})

@@ -7,14 +7,18 @@
         http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!-- 提供方应用信息，用于计算依赖关系 -->
-    <dubbo:application name="${spring.application.name}"  />
+    <!--&lt;!&ndash; 提供方应用信息，用于计算依赖关系 &ndash;&gt;-->
+    <dubbo:application name="ucenter-consumer"  />
 
-    <!-- 使用multicast广播注册中心暴露服务地址 -->
-    <dubbo:registry protocol="zookeeper" address="${zookeeper.connect}"  file="${dubbo.cache}"/>
+    <!--&lt;!&ndash; 使用multicast广播注册中心暴露服务地址 &ndash;&gt;-->
+    <dubbo:registry protocol="zookeeper" address="127.0.0.1:4180" />
 
-    <!-- 消费方缺省配置，当ReferenceConfig某属性没有配置时，采用此缺省值，可选。-->
-    <dubbo:consumer version="${dubbo.provider.version}" />
+    <!--&lt;!&ndash; 消费方缺省配置，当ReferenceConfig某属性没有配置时，采用此缺省值，可选。&ndash;&gt;-->
+    <!--<dubbo:consumer version="${dubbo.provider.version}" />-->
+
+    <dubbo:annotation package=" com.knight.ucenter.server"/>
+
+    <dubbo:service interface="com.knight.upms.api.UpmsLogService" ref="upmsLogService" />
 
 
 </beans>

@@ -9,20 +9,17 @@ import com.knight.upms.api.UpmsLogService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
 * UpmsLogService实现
 * Created by shuknight on 2018/4/9.
 */
-@Service
-@Transactional
+//@Component
+//@Transactional
+@org.springframework.stereotype.Service("upmsLogService")
 @BaseService
-@com.alibaba.dubbo.config.annotation.Service(version = "1.0.0",
-        application = "${dubbo.application.id}",
-        protocol = "${dubbo.protocol.id}",
-        registry = "${dubbo.registry.id}")
 public class UpmsLogServiceImpl extends BaseServiceImpl<UpmsLogMapper, UpmsLog, UpmsLogExample> implements UpmsLogService {
 
     private static Logger _log = LoggerFactory.getLogger(UpmsLogServiceImpl.class);
