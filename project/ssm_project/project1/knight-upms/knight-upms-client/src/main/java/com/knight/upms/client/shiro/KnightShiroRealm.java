@@ -1,5 +1,6 @@
 package com.knight.upms.client.shiro;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.knight.common.util.PropertiesFileUtil;
 import com.knight.upms.api.UpmsApiService;
 import com.knight.upms.dao.model.UpmsUser;
@@ -23,7 +24,7 @@ public class KnightShiroRealm extends AuthorizingRealm{
         setCredentialsMatcher(new KnightCredentialsMatcher());
     }
 
-    @Autowired
+    @Reference
     private UpmsApiService upmsApiService;
 
     /**

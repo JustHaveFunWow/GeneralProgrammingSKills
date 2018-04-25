@@ -16,7 +16,4 @@ spring:
     password: root
     driver-class-name: com.mysql.jdbc.Driver
 
-#    连接池配置信息
-    initialSize: 5
-    min-Idle: 5
 

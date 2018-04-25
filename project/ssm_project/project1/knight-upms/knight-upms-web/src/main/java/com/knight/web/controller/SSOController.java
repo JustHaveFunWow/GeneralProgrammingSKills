@@ -1,6 +1,7 @@
 package com.knight.web.controller;
 
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.knight.common.result.BaseServerResponse;
 import com.knight.common.util.PropertiesFileUtil;
 import com.knight.common.util.RedisUtil;
@@ -43,13 +44,13 @@ public class SSOController {
 
     private final static String KNIGHT_UPMS_SERVER_CODE = UpmsConstants.KNIGHT_UPMS_SERVER_CODE;
 
-    @Autowired
+    @Reference(version = "1.0.0")
     UpmsSystemService upmsSystemService;
 
-    @Autowired
+    @Reference(version = "1.0.0")
     UpmsUserService upmsUserService;
 
-    @Autowired
+    @Reference(version = "1.0.0")
     ShiroSessionDao shiroSessionDao;
 
     @RequestMapping(value = "/index",method = RequestMethod.GET)

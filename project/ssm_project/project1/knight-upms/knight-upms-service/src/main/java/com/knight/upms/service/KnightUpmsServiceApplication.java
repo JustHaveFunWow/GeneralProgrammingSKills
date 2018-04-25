@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 @SpringBootApplication(scanBasePackages = {"com.knight",},exclude = {DataSourceAutoConfiguration.class})
-@MapperScan("com.knight.*.dao.mapper")
 public class KnightUpmsServiceApplication {
 
     public static void main(String[] args) {

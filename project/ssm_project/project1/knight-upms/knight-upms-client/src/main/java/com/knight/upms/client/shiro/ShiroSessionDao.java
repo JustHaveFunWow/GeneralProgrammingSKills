@@ -44,8 +44,6 @@ public class ShiroSessionDao extends CachingSessionDAO{
     //特殊配置 用于在没有redis时，将session放到 Ehcache 中
     private Boolean onlyEhcache;
 
-    @Autowired
-    private JedisPool jedisPool;
 
     @Override
     protected Serializable doCreate(Session session) {
@@ -119,19 +117,15 @@ public class ShiroSessionDao extends CachingSessionDAO{
     @Override
     protected Session doReadSession(Serializable sessionId) {
         logger.debug("begin doReadSession {}",sessionId);
-        Jedis jedis = jedisPool.getResource();
         Session session = null;
-        try {
-            String value = jedis.get(UpmsConstants.KNIGHT_UPMS_SHIRO_SESSION_ID +"_" +sessionId);
-            if (StringUtils.isNotBlank(value)){
-                session = SerializeUtils.deserializeFromString(value);
-                logger.info("sessionId {} ",sessionId);
-            }
-        } catch (Exception e){
-            logger.error("读取sessionshib");
-        }finally {
-            jedis.close();
+
+        String value =RedisUtil.get(UpmsConstants.KNIGHT_UPMS_SHIRO_SESSION_ID +"_" +sessionId);
+        if (StringUtils.isNotBlank(value)){
+            session = SerializeUtils.deserializeFromString(value);
+            logger.info("sessionId {} ",sessionId);
         }
+        return session;
+
 //        Session session = getCachedSession(sessionId);
 //        if (session == null || session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY) == null){
 //            session = this.doReadSession(sessionId);
@@ -141,8 +135,6 @@ public class ShiroSessionDao extends CachingSessionDAO{
 //                cache(session,session.getId());
 //            }
 //        }
-        return session;
-
     }
 
     public void updateStatus(Serializable sessionId, ShiroSession.OnlineStatus onlineStatus){
