@@ -16,7 +16,7 @@
         <module>knight-upms-api</module>
         <module>knight-upms-client</module>
         <module>knight-upms-service</module>
-        <module>knight-upms-server</module>
+        <module>knight-upms-web</module>
     </modules>
 
 </project>

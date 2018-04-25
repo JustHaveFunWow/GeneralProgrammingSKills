@@ -8,17 +8,16 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!--&lt;!&ndash; 提供方应用信息，用于计算依赖关系 &ndash;&gt;-->
-    <dubbo:application name="ucenter-consumer"  />
+    <dubbo:application name="${dubbo.application.name}}"  />
 
     <!--&lt;!&ndash; 使用multicast广播注册中心暴露服务地址 &ndash;&gt;-->
-    <dubbo:registry protocol="zookeeper" address="127.0.0.1:4180" />
+    <dubbo:registry protocol="${dubbo.protocol.name}}" address="${dubbo.registry.address}}" />
 
     <!--&lt;!&ndash; 消费方缺省配置，当ReferenceConfig某属性没有配置时，采用此缺省值，可选。&ndash;&gt;-->
     <!--<dubbo:consumer version="${dubbo.provider.version}" />-->
 
-    <dubbo:annotation package=" com.knight.ucenter.server.controller"/>
+    <dubbo:annotation package="${dubbo.scan}}"/>
 
-    <!--<dubbo:reference interface="com.knight.upms.api.UpmsLogService" id="upmsLogService" />-->
 
 
 </beans>

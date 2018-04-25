@@ -17,6 +17,13 @@
             <artifactId>knight-ucenter-service</artifactId>
             <version>1.0.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.knight</groupId>
+            <artifactId>knight-upms-client</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
         <dependency>
             <groupId>com.knight</groupId>
             <artifactId>knight-upms-api</artifactId>

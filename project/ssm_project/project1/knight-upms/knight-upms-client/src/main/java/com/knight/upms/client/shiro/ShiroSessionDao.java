@@ -2,6 +2,7 @@ package com.knight.upms.client.shiro;
 
 import com.knight.common.util.RedisUtil;
 import com.knight.common.util.SerializeUtils;
+import com.knight.upms.client.shiro.common.UpmsConstants;
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.session.Session;
@@ -13,8 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-import com.knight.upms.client.shiro.common.Constants;
-import com.knight.upms.client.shiro.common.UpmsConstant;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -25,7 +24,6 @@ public class ShiroSessionDao extends CachingSessionDAO{
 
     private static final Logger logger = LoggerFactory.getLogger(ShiroSessionDao.class);
 
-    private String prefix = Constants.SESSION_ID_PREFIX;
 
     // 会话key
     private final static String KNIGHT_UPMS_SHIRO_SESSION_ID = "knight-upms-shiro-session-id";
@@ -84,9 +82,9 @@ public class ShiroSessionDao extends CachingSessionDAO{
     protected void doDelete(Session session) {
         logger.debug("begin doDelete {}",session);
         String sessionId = session.getId().toString();
-        String upmsType = ObjectUtils.toString(session.getAttribute(UpmsConstant.UPMS_TYPE));
+        String upmsType = ObjectUtils.toString(session.getAttribute(UpmsConstants.UPMS_TYPE));
         if ("client".equals(upmsType)){
-            RedisUtil.get(KNIGHT_UPMS_CLIENT_SESSION_ID+"_" +sessionId);
+            RedisUtil.get(KNIGHT_UPMS_CLIENT_SESSION_ID+"_"+sessionId);
             Jedis jedis = RedisUtil.getJedis();
             jedis.del(KNIGHT_UPMS_CLIENT_SESSION_ID+"_"+sessionId);
             jedis.srem(KNIGHT_UPMS_CLIENT_SESSION_ID +"_"+sessionId);
@@ -124,11 +122,10 @@ public class ShiroSessionDao extends CachingSessionDAO{
         Jedis jedis = jedisPool.getResource();
         Session session = null;
         try {
-            String key = prefix + sessionId;
-            String value = jedis.get(key);
+            String value = jedis.get(UpmsConstants.KNIGHT_UPMS_SHIRO_SESSION_ID +"_" +sessionId);
             if (StringUtils.isNotBlank(value)){
                 session = SerializeUtils.deserializeFromString(value);
-                logger.info("sessionId {} ttl {}",sessionId, jedis.ttl(key));
+                logger.info("sessionId {} ",sessionId);
             }
         } catch (Exception e){
             logger.error("读取sessionshib");

@@ -1,7 +1,7 @@
 package com.knight.common.result;
 
 /**
- * Created by geely
+ * Created by zhuoxiuwu
  */
 public enum ResponseCode {
 
