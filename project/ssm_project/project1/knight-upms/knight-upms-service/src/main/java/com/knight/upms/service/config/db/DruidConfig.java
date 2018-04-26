@@ -28,23 +28,22 @@ public class DruidConfig {
     @Value("${spring.datasource.initialSize}")
     private int initialSize;
 
-//    @Bean
-//    @Primary
-//    public DataSource dataSource(){
-//        DruidDataSource dataSource = new DruidDataSource();
-//        dataSource.setUrl(this.dbUrl);
-//        dataSource.setUsername(username);
-//        dataSource.setPassword(password);
-//        dataSource.setDriverClassName(driverClassName);
-//        dataSource.setInitialSize(initialSize);
-//        //todo 进行更多个性化的配置
-//        return dataSource;
-//    }
-//
-//    @Bean
-//    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-//        SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-//        sessionFactory.setDataSource(dataSource);
-//        return sessionFactory.getObject();
-//    }
+    @Bean
+    public DataSource dataSource(){
+        DruidDataSource dataSource = new DruidDataSource();
+        dataSource.setUrl(this.dbUrl);
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
+        dataSource.setDriverClassName(driverClassName);
+        dataSource.setInitialSize(initialSize);
+        //todo 进行更多个性化的配置
+        return dataSource;
+    }
+
+    @Bean
+    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+        SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
+        sessionFactory.setDataSource(dataSource);
+        return sessionFactory.getObject();
+    }
 }
