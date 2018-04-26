@@ -21,19 +21,18 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import com.knight.upms.client.shiro.ShiroSession;
 import com.knight.upms.client.shiro.ShiroSessionDao;
 import com.knight.upms.client.shiro.common.UpmsConstants;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.UUID;
 
-@Controller
+@RestController
 @RequestMapping("/sso")
 public class SSOController {
     //全局会话Key
@@ -44,21 +43,23 @@ public class SSOController {
 
     private final static String KNIGHT_UPMS_SERVER_CODE = UpmsConstants.KNIGHT_UPMS_SERVER_CODE;
 
-    @Reference(version = "1.0.0")
+    @Reference(check = true)
     UpmsSystemService upmsSystemService;
 
-    @Reference(version = "1.0.0")
+    @Reference()
     UpmsUserService upmsUserService;
 
-    @Reference(version = "1.0.0")
+    @Reference()
     ShiroSessionDao shiroSessionDao;
 
+
     @RequestMapping(value = "/index",method = RequestMethod.GET)
-    public String index(HttpServletRequest request) throws Exception{
+    @ResponseBody
+    public BaseServerResponse index(HttpServletRequest request) throws Exception{
         String appid = request.getParameter("appid");
         String backurl = request.getParameter("backurl");
         if (StringUtils.isBlank(appid)){
-            throw new RuntimeException("无效访问");
+            return BaseServerResponse.createByErrorMessage("无效访问");
         }
         //判断请求认证系统是否注册
         UpmsSystemExample upmsSystemExample = new UpmsSystemExample();
@@ -68,7 +69,9 @@ public class SSOController {
         if (0 == count){
             throw new RuntimeException(String.format("未注册的系统 %s",appid));
         }
-        return "redirect:/sso/login?backUrl=" + URLEncoder.encode(backurl,"utf-8");
+        HashMap<String, String> map = new HashMap<>();
+        map.put("backUrl",URLEncoder.encode(backurl));
+        return BaseServerResponse.createBySuccess(map);
     }
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
@@ -148,6 +151,7 @@ public class SSOController {
     }
 
     @RequestMapping(value = "/logout",method = RequestMethod.GET)
+    @ResponseBody
     public String logout(HttpServletRequest request){
         //shiro 退出登录
         SecurityUtils.getSubject().logout();
@@ -158,4 +162,23 @@ public class SSOController {
         }
         return "redirect:"+redirectUrl;
     }
+
+    @RequestMapping(value = "/sysytem/add")
+    @ResponseBody
+    public BaseServerResponse addSystem(@RequestParam String name){
+        //todo 检查是否具有管理员权限
+        UpmsSystem upmsSystem = new UpmsSystem();
+        upmsSystem.setName(name);
+        byte status = 1;
+        upmsSystem.setStatus(status);
+        upmsSystem.setBasepath(name);
+        int i = upmsSystemService.insertSelective(upmsSystem);
+        if (i == 1){
+            return BaseServerResponse.createBySuccessMessage("创建系统成功");
+        }else {
+            return BaseServerResponse.createByErrorMessage("创建系统失败");
+        }
+
+    }
+
 }

@@ -2,8 +2,10 @@ package com.knight.upms.dao.model;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class UpmsSystem {
+public class UpmsSystem implements Serializable{
     /**
      * 编号
      *
