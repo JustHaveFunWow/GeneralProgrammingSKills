@@ -1,6 +1,5 @@
 package com.knight.upms.service.impl;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.knight.common.annotation.BaseService;
 import com.knight.common.base.BaseServiceImpl;
 import com.knight.upms.dao.mapper.UpmsLogMapper;
@@ -11,15 +10,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
 * UpmsLogService实现
 * Created by shuknight on 2018/4/9.
 */
-//@Component
-//@Transactional
-@Service(version = "1.0.0")
+@Service
+@Transactional
 @BaseService
 public class UpmsLogServiceImpl extends BaseServiceImpl<UpmsLogMapper, UpmsLog, UpmsLogExample> implements UpmsLogService {
 

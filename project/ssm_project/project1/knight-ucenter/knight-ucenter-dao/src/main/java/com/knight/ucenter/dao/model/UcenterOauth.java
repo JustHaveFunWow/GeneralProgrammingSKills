@@ -1,9 +1,10 @@
 package com.knight.ucenter.dao.model;
 
+import java.io.Serializable;
 import lombok.Data;
 
 @Data
-public class UcenterOauth {
+public class UcenterOauth implements Serializable {
     /**
      * 编号
      *
@@ -17,4 +18,6 @@ public class UcenterOauth {
      * @mbg.generated
      */
     private String name;
+
+    private static final long serialVersionUID = 1L;
 }

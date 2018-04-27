@@ -3,7 +3,9 @@ package com.knight.upms.client.shiro;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.knight.common.util.PropertiesFileUtil;
 import com.knight.upms.api.UpmsApiService;
+import com.knight.upms.api.UpmsUserService;
 import com.knight.upms.dao.model.UpmsUser;
+import com.knight.upms.dao.model.UpmsUserExample;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -13,8 +15,10 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.knight.upms.client.shiro.common.AuthUtils;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 
 public class KnightShiroRealm extends AuthorizingRealm{
 
@@ -24,8 +28,11 @@ public class KnightShiroRealm extends AuthorizingRealm{
         setCredentialsMatcher(new KnightCredentialsMatcher());
     }
 
-    @Reference
+    @Autowired
     private UpmsApiService upmsApiService;
+
+    @Autowired
+    private UpmsUserService upmsUserService;
 
     /**
      * 授权查询回调函数，进行鉴权但缓存中无用户授权信息时调用， 负责在应用程序中决定用用户的访问控制的方法
@@ -62,7 +69,7 @@ public class KnightShiroRealm extends AuthorizingRealm{
         String password = new String( (char[]) token.getCredentials());
 
         //client 无密码认证
-        String upmsType = PropertiesFileUtil.getInstance("knight-upms-client").get("knight.upms.type");
+        String upmsType = PropertiesFileUtil.getInstance("knight-upms-client").get("upms.type");
 
         UpmsUser upmsUser = upmsApiService.selectUpmsUserByUsername(username);
 
@@ -94,12 +101,12 @@ public class KnightShiroRealm extends AuthorizingRealm{
 
         @Override
         public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {
-            UpmsUser upmsUser = (UpmsUser) token.getPrincipal();
+            String userName = (String) token.getPrincipal();
 
             String password = new String((char[])token.getCredentials());
-
-
-
+            UpmsUserExample example = new UpmsUserExample();
+            example.createCriteria().andUsernameEqualTo(userName);
+            UpmsUser upmsUser = upmsUserService.selectFirstByExample(example);
             return AuthUtils.encryptPassword(password,upmsUser.getSalt()).equals(upmsUser.getPassword());
         }
     }

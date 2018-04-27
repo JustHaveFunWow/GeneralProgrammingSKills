@@ -1,10 +1,11 @@
 package com.knight.ucenter.dao.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
 
 @Data
-public class UcenterUserLog {
+public class UcenterUserLog implements Serializable {
     /**
      * 编号
      *
@@ -46,4 +47,6 @@ public class UcenterUserLog {
      * @mbg.generated
      */
     private byte[] agent;
+
+    private static final long serialVersionUID = 1L;
 }

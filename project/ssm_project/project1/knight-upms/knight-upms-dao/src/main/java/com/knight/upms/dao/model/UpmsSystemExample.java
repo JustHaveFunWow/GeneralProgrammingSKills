@@ -1,14 +1,17 @@
 package com.knight.upms.dao.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UpmsSystemExample {
+public class UpmsSystemExample implements Serializable {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
+
+    private static final long serialVersionUID = 1L;
 
     public UpmsSystemExample() {
         oredCriteria = new ArrayList<Criteria>();
@@ -63,7 +66,7 @@ public class UpmsSystemExample {
         distinct = false;
     }
 
-    protected abstract static class GeneratedCriteria {
+    protected abstract static class GeneratedCriteria implements Serializable {
         protected List<Criterion> criteria;
 
         protected GeneratedCriteria() {
@@ -835,14 +838,14 @@ public class UpmsSystemExample {
         }
     }
 
-    public static class Criteria extends GeneratedCriteria {
+    public static class Criteria extends GeneratedCriteria implements Serializable {
 
         protected Criteria() {
             super();
         }
     }
 
-    public static class Criterion {
+    public static class Criterion implements Serializable {
         private String condition;
 
         private Object value;

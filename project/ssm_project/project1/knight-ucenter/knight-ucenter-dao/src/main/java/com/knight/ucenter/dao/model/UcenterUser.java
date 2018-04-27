@@ -1,10 +1,11 @@
 package com.knight.ucenter.dao.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
 
 @Data
-public class UcenterUser {
+public class UcenterUser implements Serializable {
     /**
      * 编号
      *
@@ -81,4 +82,6 @@ public class UcenterUser {
      * @mbg.generated
      */
     private String lastLoginIp;
+
+    private static final long serialVersionUID = 1L;
 }

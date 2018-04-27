@@ -1,9 +1,10 @@
 package com.knight.upms.dao.model;
 
+import java.io.Serializable;
 import lombok.Data;
 
 @Data
-public class UpmsPermission {
+public class UpmsPermission implements Serializable {
     /**
      * 编号
      *
@@ -80,4 +81,6 @@ public class UpmsPermission {
      * @mbg.generated
      */
     private Long orders;
+
+    private static final long serialVersionUID = 1L;
 }

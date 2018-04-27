@@ -1,8 +1,8 @@
 package com.knight.upms.client.shiro;
 
 import com.knight.common.util.RedisUtil;
-import com.knight.common.util.SerializeUtils;
 import com.knight.upms.client.shiro.common.UpmsConstants;
+import com.knight.upms.client.shiro.util.SerializableUtil;
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.session.Session;
@@ -10,10 +10,8 @@ import org.apache.shiro.session.mgt.ValidatingSession;
 import org.apache.shiro.session.mgt.eis.CachingSessionDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -49,7 +47,7 @@ public class ShiroSessionDao extends CachingSessionDAO{
     protected Serializable doCreate(Session session) {
         Serializable sessionId = this.generateSessionId(session);
         assignSessionId(session,sessionId);
-        RedisUtil.set(KNIGHT_UPMS_SHIRO_SESSION_ID+"_"+sessionId,SerializeUtils.serializeToString(sessionId),
+        RedisUtil.set(KNIGHT_UPMS_SHIRO_SESSION_ID+"_"+sessionId,SerializableUtil.serialize(session),
                 (int) session.getTimeout() / 1000);
 
         logger.debug("doCreate >>>>> sessionId={}",sessionId);
@@ -71,7 +69,7 @@ public class ShiroSessionDao extends CachingSessionDAO{
             cachedShiroSession.setStatus(cachedShiroSession.getStatus());
             cachedShiroSession.setAttribute("FORCE_LOGOUT",cachedShiroSession.getAttribute("FORCE_LOGOUT"));
         }
-        RedisUtil.set(KNIGHT_UPMS_SHIRO_SESSION_ID +"_" +session.getId(),SerializeUtils.serializeToString((Serializable) session),
+        RedisUtil.set(KNIGHT_UPMS_SHIRO_SESSION_ID +"_" +session.getId(),SerializableUtil.serialize(session),
                 (int) (session.getTimeout()/1000));
 
     }
@@ -113,7 +111,6 @@ public class ShiroSessionDao extends CachingSessionDAO{
     }
 
 
-
     @Override
     protected Session doReadSession(Serializable sessionId) {
         logger.debug("begin doReadSession {}",sessionId);
@@ -121,7 +118,7 @@ public class ShiroSessionDao extends CachingSessionDAO{
 
         String value =RedisUtil.get(UpmsConstants.KNIGHT_UPMS_SHIRO_SESSION_ID +"_" +sessionId);
         if (StringUtils.isNotBlank(value)){
-            session = SerializeUtils.deserializeFromString(value);
+            session = SerializableUtil.deserialize(value);
             logger.info("sessionId {} ",sessionId);
         }
         return session;
@@ -142,6 +139,6 @@ public class ShiroSessionDao extends CachingSessionDAO{
         if (null == session)
             return;
         session.setStatus(onlineStatus);
-        RedisUtil.set(KNIGHT_UPMS_SHIRO_SESSION_ID +"_" +session.getId(), SerializeUtils.serializeToString(session),(int) session.getTimeout() / 1000);
+        RedisUtil.set(KNIGHT_UPMS_SHIRO_SESSION_ID +"_" +session.getId(), SerializableUtil.serialize(session),(int) session.getTimeout() / 1000);
     }
 }

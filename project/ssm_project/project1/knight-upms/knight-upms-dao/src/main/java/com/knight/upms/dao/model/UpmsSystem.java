@@ -1,11 +1,10 @@
 package com.knight.upms.dao.model;
 
+import java.io.Serializable;
 import lombok.Data;
 
-import java.io.Serializable;
-
 @Data
-public class UpmsSystem implements Serializable{
+public class UpmsSystem implements Serializable {
     /**
      * 编号
      *
@@ -82,4 +81,6 @@ public class UpmsSystem implements Serializable{
      * @mbg.generated
      */
     private Long orders;
+
+    private static final long serialVersionUID = 1L;
 }

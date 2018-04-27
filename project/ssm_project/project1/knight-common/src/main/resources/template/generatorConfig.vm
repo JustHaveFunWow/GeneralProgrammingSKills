@@ -17,9 +17,9 @@
 ##        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>
 
         <!-- 为生成的Java模型类添加序列化接口，并生成serialVersionUID字段 -->
-##        <plugin type="com.knight.common.plugin.SerializablePlugin">
-##            <property name="suppressJavaInterface" value="false"/>
-##        </plugin>
+        <plugin type="com.knight.common.plugin.SerializablePlugin">
+            <property name="suppressJavaInterface" value="false"/>
+        </plugin>
 
         <!-- 生成一个新的selectByExample方法，这个方法可以接收offset和limit参数，主要用来实现分页，只支持mysql(已使用pagehelper代替) -->
         <!--<plugin type="com.knight.common.plugin.PaginationPlugin"></plugin>-->

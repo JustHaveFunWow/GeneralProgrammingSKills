@@ -1,9 +1,10 @@
 package com.knight.upms.dao.model;
 
+import java.io.Serializable;
 import lombok.Data;
 
 @Data
-public class UpmsLog {
+public class UpmsLog implements Serializable {
     /**
      * 编号
      *
@@ -91,4 +92,6 @@ public class UpmsLog {
     private String parameter;
 
     private String result;
+
+    private static final long serialVersionUID = 1L;
 }

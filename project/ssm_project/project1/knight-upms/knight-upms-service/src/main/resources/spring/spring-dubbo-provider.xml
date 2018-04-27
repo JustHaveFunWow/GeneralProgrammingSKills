@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="${dubbo.application.name}"  />
+
+    <!-- 使用zookeeper注册中心暴露服务地址 -->
+    <dubbo:registry address="${dubbo.registry.address}" />
+    <!-- 用dubbo协议在20880端口暴露服务 -->
+    <dubbo:protocol name="${dubbo.protocol.name}" port="${dubbo.protocol.port}" />
+
+    <dubbo:annotation package="${dubbo.scan}"/>
+    <!-- 声明需要暴露的服务接口 -->
+    <!--<dubbo:service interface="com.knight.upms.api.UpmsLogService" ref="upmsLogService" />-->
+
+    <!-- 系统 -->
+    <bean id="upmsSystemService" class="com.knight.upms.service.impl.UpmsSystemServiceImpl"/>
+    <dubbo:service interface="com.knight.upms.api.UpmsSystemService" ref="upmsSystemService" timeout="10000"/>
+
+    <!-- 组织 -->
+    <bean id="upmsOrganizationService" class="com.knight.upms.service.impl.UpmsOrganizationServiceImpl"/>
+    <dubbo:service interface="com.knight.upms.api.UpmsOrganizationService" ref="upmsOrganizationService" timeout="10000"/>
+
+    <!-- 用户组织 -->
+    <bean id="upmsUserOrganizationService" class="com.knight.upms.service.impl.UpmsUserOrganizationServiceImpl"/>
+    <dubbo:service interface="com.knight.upms.api.UpmsUserOrganizationService" ref="upmsUserOrganizationService" timeout="10000"/>
+
+    <!-- 用户 -->
+    <bean id="upmsUserService" class="com.knight.upms.service.impl.UpmsUserServiceImpl"/>
+    <dubbo:service interface="com.knight.upms.api.UpmsUserService" ref="upmsUserService" timeout="10000"/>
+
+    <!-- 角色 -->
+    <bean id="upmsRoleService" class="com.knight.upms.service.impl.UpmsRoleServiceImpl"/>
+    <dubbo:service interface="com.knight.upms.api.UpmsRoleService" ref="upmsRoleService" timeout="10000"/>
+
+    <!-- 权限 -->
+    <bean id="upmsPermissionService" class="com.knight.upms.service.impl.UpmsPermissionServiceImpl"/>
+    <dubbo:service interface="com.knight.upms.api.UpmsPermissionService" ref="upmsPermissionService" timeout="10000"/>
+
+    <!-- 角色权限 -->
+    <bean id="upmsRolePermissionService" class="com.knight.upms.service.impl.UpmsRolePermissionServiceImpl"/>
+    <dubbo:service interface="com.knight.upms.api.UpmsRolePermissionService" ref="upmsRolePermissionService" timeout="10000"/>
+
+    <!-- 用户权限 -->
+    <bean id="upmsUserPermissionService" class="com.knight.upms.service.impl.UpmsUserPermissionServiceImpl"/>
+    <dubbo:service interface="com.knight.upms.api.UpmsUserPermissionService" ref="upmsUserPermissionService" timeout="10000"/>
+
+    <!-- 用户角色 -->
+    <bean id="upmsUserRoleService" class="com.knight.upms.service.impl.UpmsUserRoleServiceImpl"/>
+    <dubbo:service interface="com.knight.upms.api.UpmsUserRoleService" ref="upmsUserRoleService" timeout="10000"/>
+
+    <!-- 操作日志 -->
+    <bean id="upmsLogService" class="com.knight.upms.service.impl.UpmsLogServiceImpl"/>
+    <dubbo:service interface="com.knight.upms.api.UpmsLogService" ref="upmsLogService" timeout="10000"/>
+
+    <!-- 接口服务 -->
+    <bean id="upmsApiService" class="com.knight.upms.service.impl.UpmsApiServiceImpl"/>
+    <dubbo:service interface="com.knight.upms.api.UpmsApiService" ref="upmsApiService" timeout="10000"/>
+</beans>

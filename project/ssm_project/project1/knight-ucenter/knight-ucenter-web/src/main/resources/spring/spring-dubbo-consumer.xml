@@ -18,6 +18,17 @@
 
     <dubbo:annotation package="${dubbo.scan}"/>
 
-
+    <!-- 认证方式 -->
+    <dubbo:reference id="ucenterOauthService" interface="com.knight.ucenter.api.UcenterOauthService" mock="true"/>
+    <!-- 用户认证 -->
+    <dubbo:reference id="ucenterUserOauthService" interface="com.knight.ucenter.api.UcenterUserOauthService" mock="true"/>
+    <!-- 用户操作日志 -->
+    <dubbo:reference id="ucenterUserLogService" interface="com.knight.ucenter.api.UcenterUserLogService" mock="true"/>
+    <!-- 用户 -->
+    <dubbo:reference id="uenterUserService" interface="com.knight.ucenter.api.UcenterUserService" mock="true"/>
+    <!-- 用户详情 -->
+    <dubbo:reference id="ucenterUserDetailsService" interface="com.knight.ucenter.api.UcenterUserDetailsService" mock="true"/>
+     <!--接口服务 -->
+    <!--<dubbo:reference id="ucenterApiService" interface="com.knight.ucenter.api.UcenterApiService" mock="true"/>-->
 
 </beans>

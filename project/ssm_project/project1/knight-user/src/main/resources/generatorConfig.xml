@@ -13,6 +13,7 @@
         <property name="endingDelimiter" value="`"/>
 
         <plugin type="com.knight.common.plugin.LombokPlugin" />
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
         <!-- 为生成的Java模型创建一个toString方法 -->
 
         <!-- 为生成的Java模型类添加序列化接口，并生成serialVersionUID字段 -->
@@ -48,29 +49,34 @@
                         password="root" />
 
         <!-- model生成 -->
-        <javaModelGenerator targetPackage="nimdanoob.knight.web.dao.model" targetProject="/Users/hb/code/mygithub/GeneralProgrammingSKills/project/ssm_project/project1/knight-user//src/main/java" />
+        <javaModelGenerator targetPackage="nimdanoob.knight.web.dao.model" targetProject="/Users/hb/code/mygithub/GeneralProgrammingSKills/project/ssm_project/project1/knight-userknight/knight-dao/src/main/java" />
 
         <!-- MapperXML生成 -->
-        <sqlMapGenerator targetPackage="mapper" targetProject="/Users/hb/code/mygithub/GeneralProgrammingSKills/project/ssm_project/project1/knight-user/src/main/resources" />
+        <sqlMapGenerator targetPackage="mapper" targetProject="/Users/hb/code/mygithub/GeneralProgrammingSKills/project/ssm_project/project1/knight-userknight/knight-service/src/main/resources" />
 
         <!-- Mapper接口生成 -->
-        <javaClientGenerator targetPackage="nimdanoob.knight.web.dao.mapper" targetProject="/Users/hb/code/mygithub/GeneralProgrammingSKills/project/ssm_project/project1/knight-user//src/main/java" type="XMLMAPPER" />
+        <javaClientGenerator targetPackage="nimdanoob.knight.web.dao.mapper" targetProject="/Users/hb/code/mygithub/GeneralProgrammingSKills/project/ssm_project/project1/knight-userknight/knight-dao/src/main/java" type="XMLMAPPER" />
 
         <!-- 需要映射的表 -->
-                                    <table tableName="ucenter_oauth" domainObjectName="Oauth">
-                    <domainObjectRenamingRule searchString="^UCENTER_" replaceString="" />
+                                    <table tableName="ucenter_oauth" domainObjectName="UcenterOauth">
+                    <!--去除 数据库的 前缀 -->
+                    <domainObjectRenamingRule searchString="^ucenter_" replaceString="ucenter_" />
                 </table>
-                                                <table tableName="ucenter_user" domainObjectName="User">
-                    <domainObjectRenamingRule searchString="^UCENTER_" replaceString="" />
+                                                <table tableName="ucenter_user" domainObjectName="UcenterUser">
+                    <!--去除 数据库的 前缀 -->
+                    <domainObjectRenamingRule searchString="^ucenter_" replaceString="ucenter_" />
                 </table>
-                                                <table tableName="ucenter_user_details" domainObjectName="UserDetails">
-                    <domainObjectRenamingRule searchString="^UCENTER_" replaceString="" />
+                                                <table tableName="ucenter_user_details" domainObjectName="UcenterUserDetails">
+                    <!--去除 数据库的 前缀 -->
+                    <domainObjectRenamingRule searchString="^ucenter_" replaceString="ucenter_" />
                 </table>
-                                                <table tableName="ucenter_user_log" domainObjectName="UserLog">
-                    <domainObjectRenamingRule searchString="^UCENTER_" replaceString="" />
+                                                <table tableName="ucenter_user_log" domainObjectName="UcenterUserLog">
+                    <!--去除 数据库的 前缀 -->
+                    <domainObjectRenamingRule searchString="^ucenter_" replaceString="ucenter_" />
                 </table>
-                                                <table tableName="ucenter_user_oauth" domainObjectName="UserOauth">
-                    <domainObjectRenamingRule searchString="^UCENTER_" replaceString="" />
+                                                <table tableName="ucenter_user_oauth" domainObjectName="UcenterUserOauth">
+                    <!--去除 数据库的 前缀 -->
+                    <domainObjectRenamingRule searchString="^ucenter_" replaceString="ucenter_" />
                 </table>
                         </context>
 </generatorConfiguration>

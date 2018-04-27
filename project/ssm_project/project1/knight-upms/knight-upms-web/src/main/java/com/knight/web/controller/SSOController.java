@@ -43,13 +43,13 @@ public class SSOController {
 
     private final static String KNIGHT_UPMS_SERVER_CODE = UpmsConstants.KNIGHT_UPMS_SERVER_CODE;
 
-    @Reference(check = true)
+    @Autowired
     UpmsSystemService upmsSystemService;
 
-    @Reference()
+    @Autowired
     UpmsUserService upmsUserService;
 
-    @Reference()
+    @Autowired
     ShiroSessionDao shiroSessionDao;
 
 
