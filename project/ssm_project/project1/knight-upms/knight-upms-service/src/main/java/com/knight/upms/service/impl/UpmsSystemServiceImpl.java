@@ -19,6 +19,7 @@ import java.util.List;
 * Created by shuknight on 2018/4/9.
 */
 //@Transactional
+@Service
 @com.alibaba.dubbo.config.annotation.Service()
 @BaseService
 public class UpmsSystemServiceImpl extends BaseServiceImpl<UpmsSystemMapper, UpmsSystem, UpmsSystemExample> implements UpmsSystemService {

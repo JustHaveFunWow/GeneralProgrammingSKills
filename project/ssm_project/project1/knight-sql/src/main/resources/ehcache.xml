@@ -16,7 +16,7 @@
 备注: 持久化到硬盘的路径由虚拟机参数"java.io.tmpdir"决定.  例如, 在windows中, 会在此路径下 C:\Documents and Settings\li\Local Settings\Temp  在linux中, 通常会在: /tmp 下  System.out.println(System.getProperty("java.io.tmpdir"));
     -->
     <defaultCache overflowToDisk="true" eternal="false"/>
-    <diskStore path="D:/cache" />
+    <diskStore path="ehCache" />
     <!--
         <cache name="zzugxy" overflowToDisk="true" eternal="false"
         timeToIdleSeconds="300" timeToLiveSeconds="600" maxElementsInMemory="1000"
