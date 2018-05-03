@@ -27,4 +27,5 @@ public interface UcenterUserMapper {
     int updateByPrimaryKeySelective(UcenterUser record);
 
     int updateByPrimaryKey(UcenterUser record);
+
 }

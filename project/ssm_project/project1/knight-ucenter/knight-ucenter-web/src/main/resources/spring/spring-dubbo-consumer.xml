@@ -16,7 +16,7 @@
     <!--&lt;!&ndash; 消费方缺省配置，当ReferenceConfig某属性没有配置时，采用此缺省值，可选。&ndash;&gt;-->
     <!--<dubbo:consumer version="${dubbo.provider.version}" />-->
 
-    <dubbo:annotation package="${dubbo.scan}"/>
+    <dubbo:consumer check="false"/>
 
     <!-- 认证方式 -->
     <dubbo:reference id="ucenterOauthService" interface="com.knight.ucenter.api.UcenterOauthService" />

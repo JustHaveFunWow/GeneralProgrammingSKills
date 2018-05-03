@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.knight.ucenter.dao.mapper.UcenterUserMapper">
+<mapper namespace="com.knight.ucenter.dao.mapper.UcenterUserMapper" >
   <resultMap id="BaseResultMap" type="com.knight.ucenter.dao.model.UcenterUser">
     <id column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
@@ -303,5 +303,9 @@
       last_login_ip = #{lastLoginIp,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
+
+
+
   <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
+
 </mapper>

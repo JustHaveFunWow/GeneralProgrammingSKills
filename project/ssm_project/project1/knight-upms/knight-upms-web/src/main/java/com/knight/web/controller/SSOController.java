@@ -1,7 +1,6 @@
 package com.knight.web.controller;
 
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.knight.common.result.BaseServerResponse;
 import com.knight.common.util.PropertiesFileUtil;
 import com.knight.common.util.RedisUtil;

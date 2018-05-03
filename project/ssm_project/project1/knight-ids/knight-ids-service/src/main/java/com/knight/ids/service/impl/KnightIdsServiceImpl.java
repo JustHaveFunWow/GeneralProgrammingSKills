@@ -29,6 +29,7 @@ public class KnightIdsServiceImpl extends BaseServiceImpl<KnightIdsMapper, Knigh
     @Transactional
     @Override
     public int getNextId(Integer systemId,String businessName) {
+
         KnightIds knightIds = knightIdsMapper.selectByPrimaryKey(systemId);
         if (knightIds == null){
             knightIds = new KnightIds();
