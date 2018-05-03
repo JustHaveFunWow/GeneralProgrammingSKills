@@ -22,15 +22,15 @@
         </dependency>
 
         <dependency>
-            <groupId>com.knight</groupId>
-            <artifactId>knight.sql</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>1.3.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-ehcache</artifactId>
+            <version>1.0.0</version>
         </dependency>
         <!-- 分页插件 跟 common 的有版本冲突，后续解决-->
         <!--<dependency>-->
@@ -69,6 +69,8 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+
 
     </dependencies>
 

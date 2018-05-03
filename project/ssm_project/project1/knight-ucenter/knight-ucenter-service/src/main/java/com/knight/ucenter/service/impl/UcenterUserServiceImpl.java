@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
 * UcenterUserService实现
-* Created by shuknight on 2018/4/9.
+* Created by knight on 2018/4/9.
 */
 @Service
 @Transactional
@@ -25,5 +25,7 @@ public class UcenterUserServiceImpl extends BaseServiceImpl<UcenterUserMapper, U
 
     @Autowired
     UcenterUserMapper ucenterUserMapper;
+
+
 
 }

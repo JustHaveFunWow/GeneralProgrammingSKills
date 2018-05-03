@@ -24,6 +24,7 @@
         <module>knight-ucenter</module>
         <module>knight-upms</module>
         <module>knight-sql</module>
+        <module>knight-ids</module>
     </modules>
 
     <properties>

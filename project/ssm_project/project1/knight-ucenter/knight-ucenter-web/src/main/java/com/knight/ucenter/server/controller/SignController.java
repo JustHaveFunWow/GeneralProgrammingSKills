@@ -1,24 +1,29 @@
 package com.knight.ucenter.server.controller;
 
 import com.knight.common.result.BaseServerResponse;
+import com.knight.ids.client.IdsClient;
+import com.knight.ids.client.IdsClient;
 import com.knight.ucenter.api.UcenterUserService;
 import com.knight.ucenter.dao.model.UcenterUser;
-import com.knight.upms.api.UpmsLogService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.alibaba.dubbo.config.annotation.Reference;
+
 @RestController
 @RequestMapping("/users/")
+@Log4j2
 public class SignController {
-    @Reference(version = "1.0.0",check = true)
+    @Autowired
     UcenterUserService ucenterUserService;
-    @Reference(version = "1.0.0",check = true)
-    UpmsLogService upmsLogService;
+//    @Autowired
+//    UpmsLogService upmsLogService;
 
     @RequestMapping(value = "/register",method = {RequestMethod.POST,RequestMethod.GET})
     @ResponseBody
     public BaseServerResponse register(@ModelAttribute UcenterUser ucenterUser){
-        upmsLogService.test();
+
+        int userId = IdsClient.getNextId(1, "user_id");
+        log.debug("生成 userId "+userId);
         return BaseServerResponse.createBySuccess();
     }
 

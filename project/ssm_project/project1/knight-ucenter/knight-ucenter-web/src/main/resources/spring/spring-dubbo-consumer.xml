@@ -19,16 +19,16 @@
     <dubbo:annotation package="${dubbo.scan}"/>
 
     <!-- 认证方式 -->
-    <dubbo:reference id="ucenterOauthService" interface="com.knight.ucenter.api.UcenterOauthService" mock="true"/>
+    <dubbo:reference id="ucenterOauthService" interface="com.knight.ucenter.api.UcenterOauthService" />
     <!-- 用户认证 -->
-    <dubbo:reference id="ucenterUserOauthService" interface="com.knight.ucenter.api.UcenterUserOauthService" mock="true"/>
+    <dubbo:reference id="ucenterUserOauthService" interface="com.knight.ucenter.api.UcenterUserOauthService" />
     <!-- 用户操作日志 -->
-    <dubbo:reference id="ucenterUserLogService" interface="com.knight.ucenter.api.UcenterUserLogService" mock="true"/>
+    <dubbo:reference id="ucenterUserLogService" interface="com.knight.ucenter.api.UcenterUserLogService" />
     <!-- 用户 -->
-    <dubbo:reference id="uenterUserService" interface="com.knight.ucenter.api.UcenterUserService" mock="true"/>
+    <dubbo:reference id="uenterUserService" interface="com.knight.ucenter.api.UcenterUserService" />
     <!-- 用户详情 -->
-    <dubbo:reference id="ucenterUserDetailsService" interface="com.knight.ucenter.api.UcenterUserDetailsService" mock="true"/>
+    <dubbo:reference id="ucenterUserDetailsService" interface="com.knight.ucenter.api.UcenterUserDetailsService" />
      <!--接口服务 -->
-    <!--<dubbo:reference id="ucenterApiService" interface="com.knight.ucenter.api.UcenterApiService" mock="true"/>-->
+    <!--<dubbo:reference id="ucenterApiService" interface="com.knight.ucenter.api.UcenterApiService" />-->
 
 </beans>

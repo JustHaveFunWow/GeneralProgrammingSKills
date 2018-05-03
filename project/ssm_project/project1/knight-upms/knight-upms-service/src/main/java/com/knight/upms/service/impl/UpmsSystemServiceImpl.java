@@ -20,7 +20,7 @@ import java.util.List;
 */
 //@Transactional
 @Service
-@com.alibaba.dubbo.config.annotation.Service()
+@Transactional
 @BaseService
 public class UpmsSystemServiceImpl extends BaseServiceImpl<UpmsSystemMapper, UpmsSystem, UpmsSystemExample> implements UpmsSystemService {
 
