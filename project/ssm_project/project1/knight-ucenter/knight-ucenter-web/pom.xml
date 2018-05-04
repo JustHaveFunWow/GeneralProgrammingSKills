@@ -28,6 +28,7 @@
             <groupId>com.knight</groupId>
             <artifactId>knight-ucenter-api</artifactId>
             <version>1.0.0</version>
+
         </dependency>
 
 

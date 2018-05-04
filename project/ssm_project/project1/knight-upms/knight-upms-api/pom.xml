@@ -17,6 +17,7 @@
             <artifactId>knight-common</artifactId>
             <version>1.0.0</version>
         </dependency>
+
         <dependency>
             <groupId>com.knight</groupId>
             <artifactId>knight-upms-dao</artifactId>
